@@ -1,0 +1,26 @@
+<div class="col-xs-4 col-xs-offset-4" style="margin-top: 50px; position: relative; z-index: 10">
+    <div class="panel panel-default">
+        <div class="panel-heading"><i class="zmdi zmdi-account"></i>{{ str('auth-header') }}</div>
+        <div class="panel-body">
+            <app-form name="auth" ng-submit="login()">
+                <app-text type="email"
+                          name="email"
+                          label="email"
+                          hide-label="true"
+                          ng-model="form.email"
+                          required="true"></app-text>
+
+                <app-text type="password"
+                          name="password"
+                          label="password"
+                          hide-label="true"
+                          ng-model="form.password"
+                          required="true"></app-text>
+
+                <div class=""clearfix>
+                    <button type="submit" class="btn btn-primary pull-right">{{ str('submit') }}</button>
+                </div>
+            </app-form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div>
+    <ul class="nav">
+        <!-- @see resources/assets/js/app.js -->
+        <li ng-repeat="route in routes | filter:isNavigable">
+            <a href="#/">
+                <i class="zmdi" ng-class="'zmdi-' + route.meta.icon"></i>
+                <span>{{ route.meta.name }}</span>
+            </a>
+        </li>
+        <li class="nav-divider"></li>
+        <li>
+            <a href="#/logout">
+                <i class="zmdi zmdi-sign-out"></i>
+                <span>{{ str("logout") }}</span>
+            </a>
+        </li>
+    </ul>
+</div>

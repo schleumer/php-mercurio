@@ -1,0 +1,115 @@
+@import "../../../node_modules/material-design-iconic-font/less/material-design-iconic-font";
+
+.zmdi-backward {
+  .zmdi-forward;
+  transform: rotate(180deg);
+}
+
+.zmdi-sign-out {
+  .zmdi-sign-in;
+  transform: rotate(180deg);
+}
+
+@import "../../../node_modules/bootstrap/less/bootstrap";
+@import "./variables";
+@import "./bootswatch";
+
+html {
+  display: block;
+}
+
+#app {
+  margin-top: 10px;
+  padding: 0;
+  min-height: 400px;
+  position: relative;
+  .transition(all 0.1s);
+  .box-shadow(0 0 5px fade(@gray, 30%));
+
+  .ui-blocker {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9;
+    background-color: fade(@panel-bg, 60%);
+  }
+}
+
+#app-navbar {
+  border-radius: 0;
+  margin: 0;
+  .box-shadow(0 0 2px fade(@gray, 60%));
+  .navbar-brand {
+    img {
+      float: left;
+      height: 40px;
+      margin-top: -10px;
+      margin-right: 10px;
+      display: inline-block;
+    }
+  }
+}
+
+#app-container-holder {
+  padding: 0;
+}
+
+#app-container {
+  padding-top: 10px;
+}
+
+#app-left-nav {
+  padding: 0;
+  margin: 0;
+  .nav {
+    > li {
+      font-size: 15px;
+      .zmdi {
+        font-size: 24px;
+        top: 4px;
+        position: relative;
+        margin-right: 10px;
+      }
+      span {
+      }
+    }
+  }
+}
+
+.app-loading {
+  opacity: .3;
+  .ui-blocker {
+    display: block;
+  }
+}
+
+.essa-div-nao-e-uma-gambiarra {
+  #app > .ui-blocker;
+  display: block;
+  position: fixed;
+}
+
+// <editor-fold desc=" -- [spoiler]Gambiarra[/spoiler]">
+.panel-heading {
+  .zmdi {
+    font-size: 30px;
+    margin-top: -10px;
+    position: relative;
+    top: 5px;
+    margin-right: 10px;
+  }
+}
+// </editor-fold>
+
+
+.help-block {
+  .error-icon {
+    font-size: 20px;
+    margin-top: -8px;
+    top: 2px;
+    position: relative;
+  }
+}

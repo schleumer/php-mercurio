@@ -1,0 +1,53 @@
+{
+  "private": true,
+  "devDependencies": {
+    "angular": "^1.4.3",
+    "angular-resource": "^1.4.3",
+    "angular-route": "^1.4.3",
+    "babelify": "^6.1.3",
+    "bluebird": "^2.9.34",
+    "bootstrap-sass": "^3.3.5",
+    "browserify": "^11.0.0",
+    "escodegen": "^1.6.1",
+    "falafel": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-if": "^1.2.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "html-browserify": "0.0.4",
+    "jedify": "^0.2.4",
+    "laravel-elixir": "^2.0.0",
+    "laravel-elixir-browserify": "^0.8.1",
+    "lodash": "^3.10.0",
+    "ngstorage": "^0.3.6",
+    "run-sequence": "^1.1.1",
+    "through": "^2.3.8",
+    "through2": "^2.0.0",
+    "underscore": "^1.8.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.0",
+    "yamlify": "^0.1.2"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "browserify-ngannotate": "^1.0.1",
+    "font-awesome": "^4.4.0",
+    "gulp-less": "^3.0.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.4",
+    "material-design-iconic-font": "^2.1.1",
+    "ramda": "^0.17.1",
+    "vinyl-transform": "^1.0.0"
+  },
+  "frontendDependencies": [
+    "angular",
+    "angular-resource",
+    "angular-route",
+    "bootstrap",
+    "ngstorage",
+    "ramda"
+  ]
+}

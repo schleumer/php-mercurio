@@ -1,0 +1,5 @@
+<div class="help-block">
+    <div ng-repeat="error in errors" ng-class="getErrorClass(error)">
+        <i class="error-icon zmdi" ng-class="getErrorIconClass(error)"></i> {{ error.message }}
+    </div>
+</div>
