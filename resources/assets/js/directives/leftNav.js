@@ -7,7 +7,7 @@ module.exports = function LeftNav() {
   return {
     restrict: 'E',
     replace: true,
-    template: require('templates/directives/left-nav.html'),
+    template: require('templates/directives/leftNav.html'),
     link: (scope, element, attrs) => { }
   }
 };

@@ -1,9 +1,8 @@
 /**
  * Controller da Pagina Inicial
- * @module controller
+ * @module controllers
  * @type {*[]}
  * @ngInject
  */
 module.exports = function HomeController($scope, Auth) {
-  console.log(Auth.getUser());
 };

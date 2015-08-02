@@ -3,22 +3,22 @@
  * ou para gambiarras em geral.
  * @param $rootScope
  * @param $q
- * @returns {*}
  * @ngInject
  */
-module.exports = function Chaos($rootScope, $q) {
-  return {
-    bring (message, alias, context = "") {
+module.exports = function ChaosFactory($rootScope, $q) {
+  var Chaos = function () {
+    this.bring = function (message, alias, context = "") {
 
-    },
-    follow (requestQ) {
-      return requestQ.then((response) => {
-        //$rootScope.$emit("chaos.parcel")
+    };
+
+    this.follow = function (promisedRequest) {
+      return promisedRequest.then((response) => {
+        $rootScope.$emit("chaos.parcel", []);
         return response;
       }).catch((ex) => {
         $rootScope.$emit("chaos.parcel", ex.data.errors);
         return $q.reject(ex);
       });
-    }
+    };
   };
 };

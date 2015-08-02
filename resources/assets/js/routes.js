@@ -1,5 +1,5 @@
 var { use, routes } = require("./helpers/index.js");
-var C = require("./controllers/index.js");
+var C = require("./controllers");
 
 var { freeRoute, route, meta } = routes;
 var i18n = $i18n('routes');
@@ -15,7 +15,7 @@ module.exports = [
   route(C.jobs, '/jobs', require('templates/jobs/index.html'), 'JobsController',
     meta('case', i18n.all('jobs', 'jobs-desc'))),
 
-  route(C.jobOrders, '/job-orders', require('templates/job-orders/index.html'), 'JobOrdersController',
+  route(C.jobOrders, '/job-orders', require('templates/jobOrders/index.html'), 'JobOrdersController',
     meta('label', i18n.all('job-orders', 'job-orders-desc'))),
 
   route(C.payables, '/payables', require('templates/payables/index.html'), 'PayablesController',
@@ -24,5 +24,10 @@ module.exports = [
   route(C.receivables, '/receivables', require('templates/receivables/index.html'), 'ReceivablesController',
     meta('backward', i18n.all('receivables', 'receivables-desc'))),
 
-  freeRoute(C.auth, '/auth', require('templates/auth.html'), 'AuthController')
+  route(C.users, '/users', require('templates/users/index.html'), 'UsersController',
+    meta('accounts', i18n.all('users', 'users-desc'))),
+
+  freeRoute(C.auth, '/auth', require('templates/auth.html'), 'AuthController'),
+
+  freeRoute(C.logout, '/logout', null, 'LogoutController')
 ];

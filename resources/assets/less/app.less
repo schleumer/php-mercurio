@@ -39,6 +39,7 @@ html {
 }
 
 #app-navbar {
+  z-index: 2;
   border-radius: 0;
   margin: 0;
   .box-shadow(0 0 2px fade(@gray, 60%));
@@ -62,6 +63,9 @@ html {
 }
 
 #app-left-nav {
+  box-shadow: inset -8px 0 10px -10px rgba(0, 0, 0, 0.3);
+  background-color: #fcfcfc;
+  z-index: 1;
   padding: 0;
   margin: 0;
   .nav {

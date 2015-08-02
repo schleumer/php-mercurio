@@ -10,5 +10,7 @@ module.exports =  {
     "payables": "Contas a Pagar",
     "payables-desc": `descrição`,
     "receivables": "Contas a Receber",
-    "receivables-desc": `descrição`
+    "receivables-desc": `descrição`,
+    "users": "Usuários",
+    "users-desc": `descrição`
 };

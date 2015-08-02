@@ -26,4 +26,8 @@ class AuthController extends Controller
     public function getLogin(Request $request) {
         return Auth::user();
     }
+
+    public function deleteLogin(Request $request) {
+        Auth::logout();
+    }
 }

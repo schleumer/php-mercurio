@@ -1,6 +1,6 @@
 /**
  * Controller de Ordem de Serviço
- * @module controller
+ * @module controllers
  * @type {*[]}
  * @ngInject
  */

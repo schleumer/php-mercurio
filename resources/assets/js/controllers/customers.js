@@ -1,6 +1,6 @@
 /**
  * Controller de Clientes
- * @module controller
+ * @module controllers
  * @type {*[]}
  * @ngInject
  */

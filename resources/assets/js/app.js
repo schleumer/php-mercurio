@@ -27,6 +27,10 @@ document
 
 var app = angular.module('Horae', ['ngRoute', 'ngResource', 'ngStorage']);
 
+var routePrefix = '#';
+
+
+// TODO: Deixar mais bonito e menos estranho
 app
   .directive('appLeftNav', directives.leftNav)
   .directive('appLoading', directives.loading)
@@ -46,7 +50,11 @@ app
         R.pick(['path', 'template', 'name', 'free', 'resolver']),
         (route) => $routeProvider.when(route.path, use(route))
       ), routes);
+
+    $routeProvider.otherwise('/');
   });
+
+
 
 R.forEach(
   R.pipe(
@@ -80,5 +88,9 @@ app.run(function run($rootScope, Auth) {
 
   $rootScope.isNavigable = (item) => {
     return !!item.meta;
+  };
+
+  $rootScope.buildUrlFromPath = (path) => {
+    return routePrefix + path;
   };
 });

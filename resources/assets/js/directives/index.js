@@ -8,7 +8,7 @@
  * }}
  */
 module.exports = {
-  leftNav: require('./left-nav'),
+  leftNav: require('./leftNav'),
   loading: require('./loading'),
   text: require('./text'),
   error: require('./error'),

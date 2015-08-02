@@ -1,6 +1,6 @@
 /**
  * Controller de Contas a Receber
- * @module controller
+ * @module controllers
  * @type {*[]}
  * @ngInject
  */

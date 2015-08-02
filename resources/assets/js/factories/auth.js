@@ -9,7 +9,6 @@
  */
 module.exports = function Auth($http, $localStorage, $q, $rootScope) {
   var Auth = function() {
-    console.log("instanced");
     this.token = null;
     this.user = null;
 
@@ -26,6 +25,12 @@ module.exports = function Auth($http, $localStorage, $q, $rootScope) {
     this.login = function(credentials) {
       return $http.post('auth/login', credentials).then((response) => {
         return this.setUser(response.data.parcel);
+      });
+    };
+
+    this.logout = function() {
+      return $http.delete('auth/login').then((response) => {
+        return this.setUser(null);
       });
     };
 

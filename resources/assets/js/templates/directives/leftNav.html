@@ -2,7 +2,7 @@
     <ul class="nav">
         <!-- @see resources/assets/js/app.js -->
         <li ng-repeat="route in routes | filter:isNavigable">
-            <a href="#/">
+            <a ng-href="{{ buildUrlFromPath(route.path) }}">
                 <i class="zmdi" ng-class="'zmdi-' + route.meta.icon"></i>
                 <span>{{ route.meta.name }}</span>
             </a>

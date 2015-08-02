@@ -19,7 +19,7 @@ module.exports = function use(route) {
         return Loading.follow(
           Auth
             .check()
-            .then((user) => console.log("hehehehe", user))
+            .then((user) => user)
             .catch(() => $location.path('/auth'))
         );
       }

@@ -32,10 +32,6 @@ module.exports = function Error($rootScope) {
           return contextRegExp.test(error.field);
         });
       });
-      // Mantenha as coisas limpas :)
-      // scope.$on('$destroy', function() {
-      //   console.log('hmm');
-      // });
 
       scope.getErrorClass = (error) => {
         switch(error.level) {

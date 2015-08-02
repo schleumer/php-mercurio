@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 Route::post('auth/login', 'AuthController@postLogin');
 Route::get('auth/login', 'AuthController@getLogin');
+Route::delete('auth/login', 'AuthController@deleteLogin');
 
 Route::resource('users', 'UsersController');
