@@ -1,0 +1,26 @@
+<div class="row" style="margin-top: 20px">
+    <fieldset class="col-xs-12">
+        <legend>{{label}}</legend>
+            <div>
+                <div style="position:relative; margin-bottom: 20px" class="row">
+                    <div class="col-xs-8 transclude-here"></div>
+                    <div class="col-xs-4">
+                        <a href="javascript:;" class="btn btn-default" ng-click="addItem()" style="width: 100%">Adicionar</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr ng-repeat="item in items">
+                        <td>{{getValue(item)}}</td>
+                        <td>
+                            <a href="javascript:;" class="btn btn-xs btn-danger pull-right" ng-click="removeItem(item)">Remover</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        <div class="clearfix"></div>
+    </fieldset>
+</div>

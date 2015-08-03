@@ -1,14 +1,24 @@
+// <editor-fold desc=" -- [spoiler]Gambiarra[/spoiler]">
+require('./lang/**/*.js', { mode: 'expand' });
+require('./templates/**/*.html', { mode: 'expand' });
+// </editor-fold>
+
 var angular = require("angular")
   , angularRoute = require("angular-route")
   , angularResource = require("angular-resource")
   , angularStorage = require("ngstorage")
+  // VONTADE DE MATAR UM
+  , angularTable = require("ng-table/dist/ng-table.js")
+  , S = require("string")
   , R = require("ramda");
 
 var resources = require("./resources")
   , factories = require("./factories")
   , directives = require("./directives")
   , routes = require("./routes")
-  , helpers = require("./helpers");
+  , helpers = require("./helpers")
+  , boot = require("./config/boot")
+  , { routePrefix } = require('./config');
 
 var { use } = helpers;
 
@@ -25,23 +35,27 @@ document
 // implicando que o JS seja o ultimo arquivo a carregar
 // </editor-fold>
 
-var app = angular.module('Horae', ['ngRoute', 'ngResource', 'ngStorage']);
+var app = angular.module('Horae', ['ngRoute', 'ngResource', 'ngStorage', 'ngTable']);
 
-var routePrefix = '#';
+var validDirectiveName = (name) => {
+  return `app${S(name).titleCase().s}`
+};
 
+// TODO: Deixar mais bonito e menos estranho e mais automatico, porque as pessoas gostam de coisas automaticas
 
-// TODO: Deixar mais bonito e menos estranho
+R.mapObjIndexed((resolver, name) => {
+  app.directive(validDirectiveName(name), resolver)
+}, directives);
+
+R.mapObjIndexed((resolver, name) => {
+  app.factory(S(name).titleCase().s, resolver);
+}, factories);
+
+R.mapObjIndexed((resolver, name) => {
+  app.factory(S(name).titleCase().s, resolver);
+}, resources);
+
 app
-  .directive('appLeftNav', directives.leftNav)
-  .directive('appLoading', directives.loading)
-  .directive('appText', directives.text)
-  .directive('appError', directives.error)
-  .directive('appErrorBlock', directives.errorBlock)
-  .directive('appForm', directives.form)
-  .factory('Users', resources.users)
-  .factory('Auth', factories.auth)
-  .factory('Chaos', factories.chaos)
-  .factory('Loading', factories.loading)
   // EWWWWWWWWWWWW
   /* @ngAnnotate */
   .config(function routeConfig($routeProvider) {
@@ -54,8 +68,6 @@ app
     $routeProvider.otherwise('/');
   });
 
-
-
 R.forEach(
   R.pipe(
     R.pick(['name', 'resolver']),
@@ -63,34 +75,4 @@ R.forEach(
     R.apply(app.controller)
   ), routes);
 
-
-/* @ngInject */
-app.run(function run($rootScope, Auth) {
-  $rootScope.appLoadingClass = "app-loading";
-  $rootScope.routes = routes;
-  $rootScope.str = $i18n('templates').get;
-
-  $rootScope.getLeftNavClass = () => {
-    return Auth.isAuthenticated() ? 'col-xs-3' : 'hidden';
-  };
-
-  $rootScope.getContainerClass = () => {
-    return Auth.isAuthenticated() ? 'col-xs-9' : 'col-xs-12';
-  };
-
-  $rootScope.getAppBarNavClass = () => {
-    return Auth.isAuthenticated() || 'ayyyy';
-  };
-
-  $rootScope.isUserPresent = () => {
-    return Auth.isAuthenticated();
-  };
-
-  $rootScope.isNavigable = (item) => {
-    return !!item.meta;
-  };
-
-  $rootScope.buildUrlFromPath = (path) => {
-    return routePrefix + path;
-  };
-});
+app.run(boot);

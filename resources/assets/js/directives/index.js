@@ -13,5 +13,10 @@ module.exports = {
   text: require('./text'),
   error: require('./error'),
   errorBlock: require('./errorBlock'),
-  form: require('./form')
+  form: require('./form'),
+  page: require('./page'),
+  pageHeader: require('./pageHeader'),
+  pageContainer: require('./pageContainer'),
+  pageToolbar: require('./pageToolbar'),
+  listOfItems: require('./listOfItems')
 };

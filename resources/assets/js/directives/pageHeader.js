@@ -9,23 +9,18 @@
  * }}
  * @ngInject
  */
-module.exports = function Text($rootScope) {
+module.exports = function PageHeader($rootScope) {
   return {
     restrict: 'E',
     transclude: true,
     replace: true,
-    template: require('templates/directives/form.html'),
+    template: require('templates/directives/pageHeader.html'),
     scope: {
-      name: '@name',
-      ngSubmit: '&'
+      icon: '@'
     },
     link: (scope, element, attrs, ctrl) => {
-    },
-    /* @ngAnnotate */
-    controller: function ($scope) {
-      $scope.test = "lel";
-      this.getName = () => {
-        return $scope.name;
+      scope.getTitleIcon = function() {
+        return scope.icon ? `zmdi-${scope.icon}` : '';
       }
     }
   }

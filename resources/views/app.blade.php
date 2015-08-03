@@ -89,6 +89,7 @@
 </head>
 <body>
 <div ng-app="Horae">
+    <span ng-bind="testInterations()"></span>
     <div id="anti-flickering-loading">
         {{-- trans('home.loading') --}}
         <div class="spinner">

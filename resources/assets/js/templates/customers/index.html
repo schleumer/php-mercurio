@@ -1,0 +1,25 @@
+<app-page ng-init="init()">
+    <app-page-header icon="accounts">{{ str("customers-header") }}</app-page-header>
+    <app-page-container>
+        <app-page-toolbar items="toolbarItems"></app-page-toolbar>
+        <div loading-container="tableParams.settings().$loading" class="app-page-table">
+            <table ng-table="tableParams" class="table" template-pagination="custom/pager">
+                <tr ng-repeat="customer in $data">
+                    <td data-title="str('customer-name')" sortable="'name'">
+                        {{customer.name}}
+                    </td>
+                    <td data-title="str('customer-cnpj')">
+                        {{customer.cnpj}}
+                    </td>
+                    <td data-title="str('controls')" width="250">
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-xs">{{ str('view') }}</a>
+                            <a class="btn btn-default btn-xs">{{ str('edit') }}</a>
+                            <a class="btn btn-default btn-xs">{{ str('delete') }}</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </app-page-container>
+</app-page>

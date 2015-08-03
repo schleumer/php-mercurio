@@ -5,5 +5,5 @@
  * @ngInject
  */
 module.exports = function Users($resource) {
-  return $resource('/users/:id', null);
+  return $resource('/users', null);
 };

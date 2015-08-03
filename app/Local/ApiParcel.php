@@ -47,7 +47,6 @@ class ApiParcel extends JsonResponse implements \JsonSerializable
 
     public function getParcel()
     {
-        print_r("hehehhe");
         return $this->parcel;
     }
 

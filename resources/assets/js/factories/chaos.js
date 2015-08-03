@@ -21,4 +21,6 @@ module.exports = function ChaosFactory($rootScope, $q) {
       });
     };
   };
+
+  return new Chaos();
 };

@@ -12,6 +12,8 @@ module.exports = [
   route(C.customers, '/customers', require('templates/customers/index.html'), 'CustomersController',
     meta('accounts', i18n.all('customers', 'customers-desc'))),
 
+  route(C.customers, '/customers/new', require('templates/customers/form.html'), 'CustomersController'),
+
   route(C.jobs, '/jobs', require('templates/jobs/index.html'), 'JobsController',
     meta('case', i18n.all('jobs', 'jobs-desc'))),
 
@@ -23,6 +25,9 @@ module.exports = [
 
   route(C.receivables, '/receivables', require('templates/receivables/index.html'), 'ReceivablesController',
     meta('backward', i18n.all('receivables', 'receivables-desc'))),
+
+  route(C.reports, '/reports', require('templates/reports/index.html'), 'ReportsController',
+    meta('assignment', i18n.all('reports', 'reports-desc'))),
 
   route(C.users, '/users', require('templates/users/index.html'), 'UsersController',
     meta('accounts', i18n.all('users', 'users-desc'))),

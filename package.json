@@ -38,8 +38,14 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.4",
+    "jquery": "^1.11.3",
     "material-design-iconic-font": "^2.1.1",
+    "ng-table": "^0.5.4",
     "ramda": "^0.17.1",
+    "require-globify": "^1.2.1",
+    "string": "^3.3.0",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.1.1",
     "vinyl-transform": "^1.0.0"
   },
   "frontendDependencies": [
@@ -48,6 +54,11 @@
     "angular-route",
     "bootstrap",
     "ngstorage",
-    "ramda"
+    "string",
+    "ng-table/dist/ng-table.js",
+    "ramda",
+    "underscore",
+    "underscore.string",
+    "jquery"
   ]
 }

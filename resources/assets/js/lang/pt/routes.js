@@ -12,5 +12,7 @@ module.exports =  {
     "receivables": "Contas a Receber",
     "receivables-desc": `descrição`,
     "users": "Usuários",
-    "users-desc": `descrição`
+    "users-desc": `descrição`,
+    "reports": "Relatórios",
+    "reports-desc": `descrição`
 };

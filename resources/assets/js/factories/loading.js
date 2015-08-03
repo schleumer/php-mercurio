@@ -25,6 +25,14 @@ module.exports = function Loading($rootScope) {
         this.stop();
       });
     };
+
+    this.followCallback = (future) => {
+      this.start();
+      return function () {
+        this.stop();
+        future.apply(null, arguments);
+      }.bind(this);
+    }
   };
 
   return new Loading();

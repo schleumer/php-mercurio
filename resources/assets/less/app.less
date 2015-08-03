@@ -21,8 +21,9 @@ html {
 #app {
   margin-top: 10px;
   padding: 0;
-  min-height: 400px;
+  min-height: 600px;
   position: relative;
+  margin-bottom: 50px;
   .transition(all 0.1s);
   .box-shadow(0 0 5px fade(@gray, 30%));
 
@@ -60,15 +61,26 @@ html {
 
 #app-container {
   padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 #app-left-nav {
-  box-shadow: inset -8px 0 10px -10px rgba(0, 0, 0, 0.3);
-  background-color: #fcfcfc;
   z-index: 1;
   padding: 0;
   margin: 0;
+  position: static;
+  > div {
+    box-shadow: inset -8px 0 10px -10px rgba(0, 0, 0, 0.3);
+    background-color: #fcfcfc;
+    position: absolute;
+    top: @navbar-height;
+    bottom: 0px;
+    width: inherit;
+    overflow: auto;
+  }
   .nav {
+    margin-top: 20px;
+    margin-bottom: 20px;
     > li {
       font-size: 15px;
       .zmdi {
@@ -79,6 +91,12 @@ html {
       }
       span {
       }
+    }
+    > li.active > a {
+      background: none;
+      border-left: 4px solid @brand-primary;
+      border-radius: 0;
+      color: @link-color;
     }
   }
 }
@@ -116,4 +134,48 @@ html {
     top: 2px;
     position: relative;
   }
+}
+
+@app-page-header-icon-size: 35px;
+.app-page-header-icon {
+  font-size: @app-page-header-icon-size;
+  position: relative;
+  top: -4px;
+  background-color: @brand-primary;
+  color: @btn-primary-color;
+  padding: 5px;
+  border-radius: 100%;
+  width: @app-page-header-icon-size+10;
+  height: @app-page-header-icon-size+10;
+  line-height: @app-page-header-icon-size;
+  text-align: center;
+}
+
+.app-page-header-title {
+  margin: 10px 20px;
+  padding: 0;
+}
+
+.app-page-header hr {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.btn-icon {
+  font-size: 140%;
+  margin-right: 4px;
+  top: 2px;
+  position: relative;
+}
+
+.app-page-table {
+  margin-top: 10px;
+}
+
+.app-form {
+  margin-top: 30px;
+}
+
+.app-form-footer {
+  margin-top: 20px;
 }

@@ -1,0 +1,12 @@
+<div class="row-fluid">
+    <div class="btn-group">
+        <a ng-repeat="item in items"
+           type="button"
+           class="btn"
+           ng-class="getClassForButton(item)"
+           ng-href="{{ buildUrlFromPath(item.path) }}">
+            <i class="btn-icon zmdi" ng-class="getClassForIcon(item)"></i>
+            {{item.title}}
+        </a>
+    </div>
+</div>

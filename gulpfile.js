@@ -26,6 +26,7 @@ var gulp = require('gulp')
 //, replace = require('gulp-replace')
 //, closureCompiler = require('gulp-closure-compiler')
   , R = require('ramda')
+  , requireGlobify = require('require-globify')
   , pack = require('./package.json')
   , $i18n = require('./helpers/i18nify')
   , frontendDependencies = pack['frontendDependencies'];
@@ -87,6 +88,7 @@ gulp.task('browserify-app', function () {
     }))
     .transform(html)
     .transform(ngannotate)
+    .transform(requireGlobify)
     .transform(langify("pt"));
 
   frontendDependencies.forEach(function (lib) {
@@ -117,13 +119,17 @@ gulp.task('browserify-app', function () {
 gulp.task('stylesheet', function () {
   return gulp.src(['./resources/assets/less/app.less'], {
     base: './resources/assets/less/'
-  }).on('error', notify.onError("Error compiling JavaScript! \n <%= error.message %>"))
+  })
+    //.on('error', notify.onError("Error compiling JavaScript! \n <%= error.message %>"))
+    .pipe(plumber())
     .pipe(less({
       paths: [path.join(__dirname, 'node_modules')]
-    })).pipe(gulp.dest(pub('css'))).pipe(notify({
-      message: "LESS compiled!",
-      onLast: true
-    }));
+    }))
+    .pipe(gulp.dest(pub('css')));
+    //.pipe(notify({
+    //  message: "LESS compiled!",
+    //  onLast: true
+    //}));
 });
 
 gulp.task('browserify-app-watch', function () {

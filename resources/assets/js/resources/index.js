@@ -4,5 +4,6 @@
  * }}
  */
 module.exports = {
-  users: require('./users')
+  users: require('./users'),
+  customers: require('./customers')
 };

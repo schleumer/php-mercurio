@@ -1,7 +1,24 @@
-module.exports =  {
-    "logout": "Sair",
-    "email": "E-mail",
-    "password": "Senha",
-    "auth-header": "Autentique-se",
-    "submit": "Enviar"
+module.exports = {
+  "logout": "Sair",
+  "email": "E-mail",
+  "password": "Senha",
+  "auth-header": "Autentique-se",
+  "submit": "Enviar",
+  "customers-header": "Clientes",
+  "customer-name": "Razão Social",
+  "customer-cnpj": "CNPJ",
+  "customer-email": "E-mail",
+  "customer-ie": "Inscrição Estadual",
+  "customer-address": "Endereço",
+  "customer-number": "Número",
+  "customer-district": "Bairro",
+  "customer-city": "Cidade",
+  "customer-zip": "CEP",
+  "customer-contact": "Contatos",
+  "new": "Novo",
+  "view": "Visualizar",
+  "edit": "Editar",
+  "delete": "Remover",
+  "list": "Lista",
+  "controls": "Controles"
 };

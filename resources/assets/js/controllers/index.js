@@ -23,5 +23,7 @@ module.exports = {
   payables: require('./payables'),
   receivables: require('./receivables'),
   auth: require('./auth'),
-  logout: require('./logout')
+  logout: require('./logout'),
+  reports: require('./reports'),
+  users: require('./users')
 };

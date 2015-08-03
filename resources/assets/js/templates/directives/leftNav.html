@@ -1,7 +1,7 @@
 <div>
-    <ul class="nav">
+    <ul class="nav nav-pills nav-stacked">
         <!-- @see resources/assets/js/app.js -->
-        <li ng-repeat="route in routes | filter:isNavigable">
+        <li ng-repeat="route in routes | filter:isNavigable" ng-class="getClassForRoute(route)">
             <a ng-href="{{ buildUrlFromPath(route.path) }}">
                 <i class="zmdi" ng-class="'zmdi-' + route.meta.icon"></i>
                 <span>{{ route.meta.name }}</span>

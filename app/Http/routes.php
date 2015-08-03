@@ -20,3 +20,4 @@ Route::get('auth/login', 'AuthController@getLogin');
 Route::delete('auth/login', 'AuthController@deleteLogin');
 
 Route::resource('users', 'UsersController');
+Route::resource('customers', 'CustomersController');
