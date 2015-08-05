@@ -1,4 +1,4 @@
-<app-page ng-init="initForm()">
+<app-page>
     <app-page-header icon="accounts">{{ str("customers-header") }}</app-page-header>
     <app-page-container>
         <app-page-toolbar items="toolbarItems"></app-page-toolbar>
@@ -8,7 +8,6 @@
                     <app-text type="text"
                               name="name"
                               label="customer-name"
-                              hide-label="true"
                               ng-model="form.name"></app-text>
                 </div>
 
@@ -16,7 +15,6 @@
                     <app-text type="text"
                               name="email"
                               label="customer-email"
-                              hide-label="true"
                               ng-model="form.email"></app-text>
                 </div>
             </div>
@@ -26,7 +24,6 @@
                     <app-text type="text"
                               name="cnpj"
                               label="customer-cnpj"
-                              hide-label="true"
                               ng-model="form.cnpj"></app-text>
                 </div>
 
@@ -34,7 +31,6 @@
                     <app-text type="text"
                               name="ie"
                               label="customer-ie"
-                              hide-label="true"
                               ng-model="form.ie"></app-text>
                 </div>
             </div>
@@ -44,7 +40,6 @@
                     <app-text type="text"
                               name="address"
                               label="customer-address"
-                              hide-label="true"
                               ng-model="form.address"></app-text>
                 </div>
 
@@ -52,7 +47,6 @@
                     <app-text type="text"
                               name="number"
                               label="customer-number"
-                              hide-label="true"
                               ng-model="form.number"></app-text>
                 </div>
             </div>
@@ -62,7 +56,6 @@
                     <app-text type="text"
                               name="district"
                               label="customer-district"
-                              hide-label="true"
                               ng-model="form.district"></app-text>
                 </div>
 
@@ -70,7 +63,6 @@
                     <app-text type="text"
                               name="city"
                               label="customer-city"
-                              hide-label="true"
                               ng-model="form.city"></app-text>
                 </div>
             </div>
@@ -80,7 +72,6 @@
                     <app-text type="text"
                               name="zip"
                               label="customer-zip"
-                              hide-label="true"
                               ng-model="form.zip"></app-text>
                 </div>
 
@@ -88,7 +79,6 @@
                     <app-text type="text"
                               name="contact"
                               label="customer-contact"
-                              hide-label="true"
                               ng-model="form.contact"></app-text>
                 </div>
             </div>
@@ -97,7 +87,11 @@
                 <div class="col-xs-6">
                     <app-list-of-items item-key="phone" item-model="{ phone: value }" ng-model="form.phones"
                                        label="Telefones">
-                        <input type="text" ng-model="value" class="form-control">
+                        <app-text type="text"
+                                  name="phone"
+                                  label="customer-phone"
+                                  hide-label="true"
+                                  ng-model="value"></app-text>
                     </app-list-of-items>
                 </div>
             </div>
@@ -105,7 +99,8 @@
             <!-- TODO: directive -->
             <div class="row app-form-footer">
                 <div class="col-xs-12">
-                    <button class="btn btn-primary pull-right" ng-click="save()">Salvar</button>
+                    <a class="btn btn-primary pull-right" ng-click="save()" style="margin-left: 10px">Salvar</a>
+                    <a class="btn btn-default pull-right" href="#/customers">Cancelar</a>
                 </div>
             </div>
 

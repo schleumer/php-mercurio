@@ -13,11 +13,11 @@ module.exports = function ChaosFactory($rootScope, $q) {
 
     this.follow = function (promisedRequest) {
       return promisedRequest.then((response) => {
-        $rootScope.$emit("chaos.parcel", []);
+        $rootScope.$broadcast("chaos.parcel", []);
         return response;
       }).catch((ex) => {
-        $rootScope.$emit("chaos.parcel", ex.data.errors);
-        return $q.reject(ex);
+        $rootScope.$broadcast("chaos.parcel", ex.data.errors);
+        return ex;
       });
     };
   };

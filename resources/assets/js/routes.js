@@ -11,8 +11,8 @@ module.exports = [
 
   route(C.customers, '/customers', require('templates/customers/index.html'), 'CustomersController',
     meta('accounts', i18n.all('customers', 'customers-desc'))),
-
   route(C.customers, '/customers/new', require('templates/customers/form.html'), 'CustomersController'),
+  route(C.customers, '/customers/edit/:id', require('templates/customers/form.html'), 'CustomersController'),
 
   route(C.jobs, '/jobs', require('templates/jobs/index.html'), 'JobsController',
     meta('case', i18n.all('jobs', 'jobs-desc'))),

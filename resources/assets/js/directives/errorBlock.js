@@ -21,15 +21,9 @@ module.exports = function ErrorBlock($rootScope) {
     },
     link: (scope, element, attrs) => {
       scope.errors = [];
-      var contextRegExp = utils.dot2regexp(scope.context);
-
-      scope.$watch('context', (val) =>  {
-        contextRegExp = utils.dot2regexp(val);
-      });
-
       $rootScope.$on("chaos.parcel", (ev, errors) => {
         scope.errors = errors.filter(function(error) {
-          return error.field.match(contextRegExp);
+          return error.field.match(utils.dot2regexp(scope.context));
         });
       });
 

@@ -16,15 +16,24 @@ module.exports = function PageToolbar($rootScope) {
     replace: true,
     template: require('templates/directives/pageToolbar.html'),
     scope: {
-      items: '='
+      items: '=',
+      withSearch: '=',
+      onSearch: '&'
     },
     link: (scope, element, attrs, ctrl) => {
+      scope.search = { query: "" };
       scope.getClassForButton = (item) => {
         return `btn-${item.type}`;
       };
 
       scope.getClassForIcon = (item) => {
         return `zmdi-${item.icon}`;
+      };
+
+      scope.triggerSearch = () => {
+        if(scope.onSearch) {
+          scope.onSearch()(scope.search);
+        }
       };
 
       scope.buildUrlFromPath = $rootScope.buildUrlFromPath;

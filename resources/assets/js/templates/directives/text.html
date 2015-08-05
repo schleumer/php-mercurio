@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label>{{ fieldLabel }}</label>
+    <label ng-if="!hideLabel">{{ fieldLabel }}</label>
     <input type="{{ fieldType }}" class="form-control" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="fieldModel">
     <app-error for="{{ fieldContext }}"></app-error>
 </div>

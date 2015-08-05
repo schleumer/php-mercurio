@@ -11,7 +11,7 @@ var { utils } = require('../helpers');
  * }}
  * @ngInject
  */
-module.exports = function Error($rootScope) {
+module.exports = function Error($rootScope, $timeout) {
   return {
     restrict: 'E',
     replace: true,
@@ -21,15 +21,9 @@ module.exports = function Error($rootScope) {
     },
     link: (scope, element, attrs) => {
       scope.errors = [];
-      var contextRegExp = utils.dot2regexp(scope.context);
-
-      scope.$watch('context', (val) =>  {
-        contextRegExp = utils.dot2regexp(val);
-      });
-
       $rootScope.$on("chaos.parcel", (ev, errors) => {
         scope.errors = errors.filter(function(error) {
-          return contextRegExp.test(error.field);
+          return error.field.match(utils.dot2regexp(scope.context));
         });
       });
 

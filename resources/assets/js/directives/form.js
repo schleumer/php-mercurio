@@ -9,21 +9,20 @@
  * }}
  * @ngInject
  */
-module.exports = function Text($rootScope) {
+module.exports = function Form($rootScope) {
   return {
     restrict: 'E',
     transclude: true,
     replace: true,
     template: require('templates/directives/form.html'),
     scope: {
-      name: '@name',
+      name: '@',
       ngSubmit: '&'
     },
     link: (scope, element, attrs, ctrl) => {
     },
     /* @ngAnnotate */
     controller: function ($scope) {
-      $scope.test = "lel";
       this.getName = () => {
         return $scope.name;
       }

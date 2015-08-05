@@ -1,12 +1,26 @@
-<div class="row-fluid">
-    <div class="btn-group">
-        <a ng-repeat="item in items"
-           type="button"
-           class="btn"
-           ng-class="getClassForButton(item)"
-           ng-href="{{ buildUrlFromPath(item.path) }}">
-            <i class="btn-icon zmdi" ng-class="getClassForIcon(item)"></i>
-            {{item.title}}
-        </a>
+<div class="row">
+    <div class="col-xs-8">
+        <div class="btn-group">
+            <a ng-repeat="item in items"
+               type="button"
+               class="btn"
+               ng-class="getClassForButton(item)"
+               ng-href="{{ buildUrlFromPath(item.path) }}">
+                <i class="btn-icon zmdi" ng-class="getClassForIcon(item)"></i>
+                {{item.title}}
+            </a>
+        </div>
     </div>
+
+    <div class="pull-right col-xs-4" ng-if="withSearch">
+        <form ng-submit="triggerSearch()">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar..." ng-model="search.query">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Buscar!</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
 </div>

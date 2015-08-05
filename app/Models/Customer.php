@@ -23,6 +23,7 @@ class Customer extends Model implements AuthenticatableContract, CanResetPasswor
         'address',
         'number',
         'district',
+        'city',
         'state',
         'zip',
         'contact'

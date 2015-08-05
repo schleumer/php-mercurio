@@ -21,8 +21,9 @@ module.exports = function Loading($rootScope) {
       this.start();
       return $q.then((obj) => {
         return obj;
-      }).finally(() => {
+      }).finally((r) => {
         this.stop();
+        return r;
       });
     };
 

@@ -5,5 +5,7 @@
  * @ngInject
  */
 module.exports = function Customers($resource) {
-  return $resource('/customers', null);
+  return $resource('/customers/:id', null, {
+    'update': {method: 'PUT'}
+  });
 };

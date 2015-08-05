@@ -12,14 +12,15 @@
 module.exports = function Text($rootScope) {
   return {
     restrict: 'E',
-    require: '^appForm',
+    require: '?^appForm',
     replace: true,
     template: require('templates/directives/text.html'),
     scope: {
       fieldModel: '=ngModel',
       fieldName: '@name',
       fieldType: '@type',
-      i18nLabel: '@label'
+      i18nLabel: '@label',
+      hideLabel: '='
     },
     link: (scope, element, attrs, form) => {
       scope.formName = form.getName();
