@@ -59,7 +59,7 @@ module.exports = function CustomersController($scope, $rootScope, $q, $location,
         Loading.follow
       )(Customers.update({ id: $scope.form.id }, $scope.form).$promise)
         .then(() => {
-          //$location.path('/customers')
+          $location.path('/customers')
         });
     } else {
       R.pipe(
