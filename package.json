@@ -20,7 +20,6 @@
     "run-sequence": "^1.1.1",
     "through": "^2.3.8",
     "through2": "^2.0.0",
-    "underscore": "^1.8.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.3.0",
@@ -40,11 +39,11 @@
     "ramda": "^0.17.1",
     "require-globify": "^1.2.1",
     "string": "^3.3.0",
-    "underscore": "^1.8.3",
-    "underscore.string": "^3.1.1",
     "vinyl-transform": "^1.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery-mask-plugin": "^1.13.4"
+  },
   "frontendDependencies": [
     "angular",
     "angular-resource",
@@ -54,8 +53,6 @@
     "string",
     "ng-table/dist/ng-table.js",
     "ramda",
-    "underscore",
-    "underscore.string",
     "jquery"
   ]
 }

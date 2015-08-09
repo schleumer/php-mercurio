@@ -1,6 +1,5 @@
 // <editor-fold desc=" -- [spoiler]Gambiarra[/spoiler]">
-require('./lang/**/*.js', { mode: 'expand' });
-require('./templates/**/*.html', { mode: 'expand' });
+require('./config/jquery');
 // </editor-fold>
 
 var angular = require("angular")
@@ -14,10 +13,12 @@ var angular = require("angular")
 
 var resources = require("./resources")
   , factories = require("./factories")
+  , services = require("./services")
   , directives = require("./directives")
   , routes = require("./routes")
   , helpers = require("./helpers")
   , boot = require("./config/boot")
+  , assets = require("./assets")
   , { routePrefix } = require('./config');
 
 var { use } = helpers;
@@ -46,6 +47,10 @@ var validDirectiveName = (name) => {
 R.mapObjIndexed((resolver, name) => {
   app.directive(validDirectiveName(name), resolver)
 }, directives);
+
+R.mapObjIndexed((resolver, name) => {
+  app.service(S(name).titleCase().s, resolver)
+}, services);
 
 R.mapObjIndexed((resolver, name) => {
   app.factory(S(name).titleCase().s, resolver);

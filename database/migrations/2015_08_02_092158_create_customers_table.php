@@ -34,6 +34,8 @@ class CreateCustomersTable extends Migration
             $table->string('contact')->nullable();
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
 
         Schema::create('customer_phones', function (Blueprint $table) {

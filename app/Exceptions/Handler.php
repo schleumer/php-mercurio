@@ -36,6 +36,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        echo($e->getTraceAsString());
         if($request->isJson()) {
             if ($e instanceof ApiParcelException) {
                 return (new ApiParcel())->addParcelException($e);

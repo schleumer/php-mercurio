@@ -1,11 +1,12 @@
+var R = require('ramda');
+
 /**
  * Factory resposável pelo loading, redirecionando os eventos para a directive de loading
  * @see {@link directives.loading}
- * @param $rootScope
  * @returns Function
  * @ngInject
  */
-module.exports = function Loading($rootScope) {
+module.exports = function Loading($rootScope, Chaos) {
   var Loading = function () {
     this.start = () => {
       $rootScope.appLoadingClass = "app-loading";
@@ -33,7 +34,18 @@ module.exports = function Loading($rootScope) {
         this.stop();
         future.apply(null, arguments);
       }.bind(this);
-    }
+    };
+
+    this.followP = R.pipe(
+      Chaos.follow,
+      this.follow
+    );
+
+    this.followR = R.pipe(
+      (req) => req.$promise,
+      Chaos.follow,
+      this.follow
+    );
   };
 
   return new Loading();

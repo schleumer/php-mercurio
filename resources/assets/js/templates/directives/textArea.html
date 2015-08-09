@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label ng-if="!hideLabel">{{ fieldLabel }}</label>
+    <textarea class="form-control" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="fieldModel">
+
+    </textarea>
+    <app-error for="{{ fieldContext }}"></app-error>
+</div>

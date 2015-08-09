@@ -1,0 +1,28 @@
+<app-page ng-init="init()">
+    <app-page-header icon="accounts">{{ str("jobs-header") }}</app-page-header>
+    <app-page-container>
+        <app-page-toolbar items="toolbarItems" with-search="true" on-search="search"></app-page-toolbar>
+        <div loading-container="tableParams.settings().$loading" class="app-page-table">
+            <table ng-table="tableParams" class="table" template-pagination="custom/pager">
+                <tr ng-repeat="item in $data">
+                    <td data-title="str('job-id')" sortable="'id'">
+                        {{item.id}}
+                    </td>
+                    <td data-title="str('job-name')" sortable="'name'">
+                        {{item.name}}
+                    </td>
+                    <td data-title="str('job-price')">
+                        {{item.price}}
+                    </td>
+                    <td data-title="str('controls')" width="250">
+                        <div class="btn-group">
+                            <!--<a class="btn btn-default btn-xs">{{ str('view') }}</a>-->
+                            <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(item)}}">{{ str('edit') }}</a>
+                            <a class="btn btn-default btn-xs" ng-click="remove(item)">{{ str('delete') }}</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </app-page-container>
+</app-page>

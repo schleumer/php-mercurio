@@ -6,7 +6,7 @@ var R = require('ramda');
  * @module controllers
  * @ngInject
  */
-module.exports = function CustomersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Customers, Chaos, Loading) {
+module.exports = function CustomersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Customers, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [
@@ -35,12 +35,9 @@ module.exports = function CustomersController($scope, $rootScope, $q, $location,
   var customer = null;
 
   if ($routeParams.id) {
-    R.pipe(
-      Chaos.follow,
-      Loading.follow
-    )(Customers.get({id: $routeParams.id}).$promise)
+    Loading.followR(Customers.get({id: $routeParams.id}))
       .then((customer) => {
-        if(customer.parcel) {
+        if (customer.parcel) {
           $scope.form = customer.parcel;
         } else {
           $location.path('/customers');
@@ -53,24 +50,27 @@ module.exports = function CustomersController($scope, $rootScope, $q, $location,
   };
 
   $scope.save = () => {
-    if($scope.form.id) {
-      R.pipe(
-        Chaos.follow,
-        Loading.follow
-      )(Customers.update({ id: $scope.form.id }, $scope.form).$promise)
-        .then(() => {
-          $location.path('/customers')
-        });
+    var request = null;
+    if ($scope.form.id) {
+      request = Loading.followR(Customers.update({id: $scope.form.id}, $scope.form))
     } else {
-      R.pipe(
-        Chaos.follow,
-        Loading.follow
-      )(Customers.save($scope.form).$promise)
-        .then(() => {
-          $location.path('/customers')
-        });
+      request = Loading.followR(Customers.save($scope.form))
     }
 
+    request.then(() => {
+      $location.path('/customers')
+    });
+
+  };
+
+  $scope.remove = (item) => {
+    Modals
+      .confirm("Você deseja realmente remover esse cliente?")
+      .then(function () {
+        Loading.followR(Customers.delete({id: item.id})).then(() => {
+          $scope.tableParams.reload();
+        });
+      });
   };
 
   $scope.getEditUrl = (customer) => {

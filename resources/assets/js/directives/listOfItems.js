@@ -1,8 +1,8 @@
-var _ = require('underscore');
 var $ = require('jquery');
+var R = require('ramda');
 
 /**
- * TODO: LIMPAR ESSE C”DIGO que foi copiado de um projeto antigo
+ * TODO: LIMPAR ESSE C√ìDIGO que foi copiado de um projeto antigo
  * @param $filter
  * @param $rootScope
  * @param $parse
@@ -27,10 +27,7 @@ module.exports = function ($filter, $rootScope, $parse) {
     template: require('templates/directives/listOfItems.html'),
     link: function (scope, element, attributes, itsNullAndNobodyCares, transclude) {
       /**
-       * Child transcluded element hack
-       * Parece gambiarra mas n„o È! Toda vez que um elemento È transincluso, ele È criado com um escopo a parte, esse escopo È isolado e sÛ acessivel por gambiarra
-       * para n„o ter esse problema, eu transincludo esse elemento utilizando o mesmo escopo do escopo corrente, assim os dois compartilham do mesmo escopo
-       * sem gambiarras :P
+       * √â gambiarra sim
        */
       transclude(scope, function (child) {
         $(element)
@@ -39,21 +36,21 @@ module.exports = function ($filter, $rootScope, $parse) {
       });
 
       scope.$watch('items', function () {
-        scope._items = [];
-        _.each(scope.items, function (k, v) {
-          scope.value = v;
-          scope._items.push({
-            value: scope.value,
-            model: v
-          });
-        });
+        // XXX: eu devia estar meio louco quando fiss isso
+        //scope._items = [];
+        //_.each(scope.items, function (k, v) {
+        //  scope.value = v;
+        //  //scope._items.push({
+        //  //  value: scope.value,
+        //  //  model: v
+        //  //});
+        //});
         scope.value = null;
       });
 
-      scope._items = [];
+      //scope._items = [];
       scope.removeItem = function (item) {
-        scope.items.splice(scope.items.indexOf(item.model), 1);
-        scope._items.splice(scope._items.indexOf(item), 1);
+        scope.items = scope.items.filter((_) => _ != item);
       };
 
       scope.maskIt = function (v) {
@@ -82,14 +79,13 @@ module.exports = function ($filter, $rootScope, $parse) {
         }
         if (scope.maxItems) {
           if (scope.items.length >= scope.maxItems) {
-            alert('Numero maximos de items j· preenchido.');
+            alert('Numero maximos de items j√° preenchido.');
             return;
           }
         }
         var modelValue = scope.itemModel ? scope.$eval(scope.itemModel) : scope.value;
         scope.items.push(modelValue);
         scope.value = null;
-        console.log(scope.items);
       }
     }
   };

@@ -10,31 +10,19 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Local\NgTableSupport;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Model implements AuthenticatableContract, CanResetPasswordContract
+class Job extends Model
 {
-    use Authenticatable, CanResetPassword, NgTableSupport, SoftDeletes;
+    use NgTableSupport, SoftDeletes;
 
-    protected $table = 'customers';
+    protected $table = 'jobs';
 
     protected $fillable = [
         'name',
-        'email',
-        'cnpj',
-        'ie',
-        'address',
-        'number',
-        'district',
-        'city',
-        'state',
-        'zip',
-        'contact'
+        'price',
+        'description'
     ];
 
     protected $hidden = [];
 
     protected $dates = ['deleted_at'];
-
-    public function phones() {
-        return $this->hasMany(CustomerPhone::class);
-    }
 }

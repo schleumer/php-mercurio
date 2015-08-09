@@ -13,7 +13,7 @@ module.exports = function Text($rootScope) {
   return {
     restrict: 'E',
     require: '?^appForm',
-    template: require('templates/directives/text.html'),
+    template: require('templates/directives/textArea.html'),
     scope: {
       fieldModel: '=ngModel',
       fieldName: '@name',

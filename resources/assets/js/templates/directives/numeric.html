@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label ng-if="!hideLabel">{{ fieldLabel }}</label>
+    <div ng-class="prefix ? 'input-group' : ''">
+        <span class="input-group-addon" ng-show="prefix">{{prefix}}</span>
+        <input type="text" class="form-control" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="auxModel">
+    </div>
+    <app-error for="{{ fieldContext }}"></app-error>
+</div>

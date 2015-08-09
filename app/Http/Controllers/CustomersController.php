@@ -38,10 +38,6 @@ class CustomersController extends Controller
         return (new ApiParcel(Customer::with('phones')->find($id)));
     }
 
-    public function index(Request $request) {
-        return Customer::ngTable($request);
-    }
-
     public function update(Request $request, $id) {
         $this->validate($request, $this->rules);
         $data = $request->all();
@@ -51,7 +47,14 @@ class CustomersController extends Controller
         Helpers::batchSync($customer->phones(), array_get($data, 'phones', []));
 
         return (new ApiParcel())->addMessage('general', 'Cliente alterado com sucesso!');
+    }
 
+    public function destroy(Request $request, $id) {
+        Customer::find($id)->delete();
+        return (new ApiParcel())->addMessage('general', 'Cliente removido com sucesso!');
+    }
 
+    public function index(Request $request) {
+        return Customer::ngTable($request);
     }
 }

@@ -4,21 +4,21 @@
         <app-page-toolbar items="toolbarItems" with-search="true" on-search="search"></app-page-toolbar>
         <div loading-container="tableParams.settings().$loading" class="app-page-table">
             <table ng-table="tableParams" class="table" template-pagination="custom/pager">
-                <tr ng-repeat="customer in $data">
+                <tr ng-repeat="item in $data">
                     <td data-title="str('customer-id')" sortable="'id'">
-                        {{customer.id}}
+                        {{item.id}}
                     </td>
                     <td data-title="str('customer-name')" sortable="'name'">
-                        {{customer.name}}
+                        {{item.name}}
                     </td>
                     <td data-title="str('customer-cnpj')">
-                        {{customer.cnpj}}
+                        {{item.cnpj}}
                     </td>
                     <td data-title="str('controls')" width="250">
                         <div class="btn-group">
                             <!--<a class="btn btn-default btn-xs">{{ str('view') }}</a>-->
-                            <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(customer)}}">{{ str('edit') }}</a>
-                            <a class="btn btn-default btn-xs">{{ str('delete') }}</a>
+                            <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(item)}}">{{ str('edit') }}</a>
+                            <a class="btn btn-default btn-xs" ng-click="remove(item)">{{ str('delete') }}</a>
                         </div>
                     </td>
                 </tr>

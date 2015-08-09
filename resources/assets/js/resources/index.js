@@ -5,5 +5,6 @@
  */
 module.exports = {
   users: require('./users'),
-  customers: require('./customers')
+  customers: require('./customers'),
+  jobs: require('./jobs')
 };

@@ -11,6 +11,8 @@ module.exports = {
   leftNav: require('./leftNav'),
   loading: require('./loading'),
   text: require('./text'),
+  numeric: require('./numeric'),
+  textArea: require('./textArea'),
   error: require('./error'),
   errorBlock: require('./errorBlock'),
   form: require('./form'),

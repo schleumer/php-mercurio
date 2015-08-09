@@ -21,3 +21,4 @@ Route::delete('auth/login', 'AuthController@deleteLogin');
 
 Route::resource('users', 'UsersController');
 Route::resource('customers', 'CustomersController');
+Route::resource('jobs', 'JobsController');

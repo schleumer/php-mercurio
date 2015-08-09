@@ -88,8 +88,8 @@ gulp.task('browserify-app', function () {
     }))
     .transform(html)
     .transform(ngannotate)
-    .transform(requireGlobify)
-    .transform(langify("pt"));
+    .transform(langify("pt"))
+    .transform(requireGlobify);
 
   frontendDependencies.forEach(function (lib) {
     appBundle.external(lib);

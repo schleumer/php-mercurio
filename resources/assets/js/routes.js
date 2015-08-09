@@ -4,7 +4,7 @@ var C = require("./controllers");
 var { freeRoute, route, meta } = routes;
 var i18n = $i18n('routes');
 
-// As rotas não estão em um objeto porque objetos (podem) não ser ordenados
+// As rotas nï¿½o estï¿½o em um objeto porque objetos (podem) nï¿½o ser ordenados
 module.exports = [
   route(C.home, '/', require('templates/index.html'), 'HomeController',
     meta('home', i18n.all('home', 'home-desc'))),
@@ -16,9 +16,13 @@ module.exports = [
 
   route(C.jobs, '/jobs', require('templates/jobs/index.html'), 'JobsController',
     meta('case', i18n.all('jobs', 'jobs-desc'))),
+  route(C.jobs, '/jobs/new', require('templates/jobs/form.html'), 'JobsController'),
+  route(C.jobs, '/jobs/edit/:id', require('templates/jobs/form.html'), 'JobsController'),
 
   route(C.jobOrders, '/job-orders', require('templates/jobOrders/index.html'), 'JobOrdersController',
     meta('label', i18n.all('job-orders', 'job-orders-desc'))),
+  //route(C.jobOrders, '/job-orders/new', require('templates/job-orders/form.html'), 'JobOrdersController'),
+  //route(C.jobOrders, '/job-orders/edit/:id', require('templates/job-orders/form.html'), 'JobOrdersController'),
 
   route(C.payables, '/payables', require('templates/payables/index.html'), 'PayablesController',
     meta('forward', i18n.all('payables', 'payables-desc'))),
