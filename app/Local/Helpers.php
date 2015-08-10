@@ -6,8 +6,6 @@ namespace App\Local;
 class Helpers {
     public static function batchSync($model, array $data) {
 
-        print_r($data);
-
         $idsToCheck = array_filter(array_map(function($item) {
             return array_get($item, 'id', null);
         }, $data), function($item) {

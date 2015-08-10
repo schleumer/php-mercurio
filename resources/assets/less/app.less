@@ -1,4 +1,5 @@
 @import "../../../node_modules/material-design-iconic-font/less/material-design-iconic-font";
+@import "../../../node_modules/toastr/toastr.less";
 
 .zmdi-backward {
   .zmdi-forward;
@@ -11,8 +12,10 @@
 }
 
 @import "../../../node_modules/bootstrap/less/bootstrap";
+@import "./select2-theme";
 @import "./variables";
 @import "./bootswatch";
+
 
 html {
   display: block;
@@ -178,4 +181,67 @@ html {
 
 .app-form-footer {
   margin-top: 20px;
+}
+
+.text-grayer {
+  color: @gray-light;
+}
+
+
+.app-remote-select {
+  .app-remote-select-holder {
+    position: relative;
+    z-index: 1;
+    .app-remote-select-dropdown {
+      display: none;
+      box-sizing: content-box;
+      background-color: @panel-bg;
+      position: absolute;
+      padding: 15px 15px 0px;
+      width: 100%;
+      border: 1px solid @dropdown-border;
+      -webkit-border-radius: @border-radius-base;
+      -moz-border-radius: @border-radius-base;
+      border-radius: @border-radius-base;
+      top: -16px;
+      left: -16px;
+      z-index: 2;
+      .box-shadow(0 1px 4px rgba(0,0,0,.3));
+
+
+      .app-remote-select-search-holder {
+        position: relative;
+        .app-remote-select-search-input {
+          position: relative;
+          z-index: 4;
+        }
+
+        .app-remote-select-search-input-shadow {
+          position: absolute;
+          opacity: .3;
+          z-index: 3;
+          right: 15px;
+          left: 15px;
+          width: auto;
+        }
+      }
+
+
+      .app-remote-select-list {
+        li > a {
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+        li.active {
+          border-left: 3px solid @brand-primary;
+          background-color: fade(@gray-lighter, 30%);
+        }
+      }
+    }
+  }
+}
+
+.fake-form-control {
+  .form-control;
+  line-height: @input-height-base;
 }

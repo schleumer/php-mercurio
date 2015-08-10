@@ -6,21 +6,21 @@ var R = require('ramda');
  * @returns Function
  * @ngInject
  */
-module.exports = function Loading($rootScope, Chaos) {
+module.exports = function Loading($rootScope, $q, Chaos) {
   var Loading = function () {
     this.start = () => {
       $rootScope.appLoadingClass = "app-loading";
-      $rootScope.$emit('appLoading:start');
+      $rootScope.$broadcast('appLoading:start');
     };
 
     this.stop = () => {
       $rootScope.appLoadingClass = "";
-      $rootScope.$emit('appLoading:stop');
+      $rootScope.$broadcast('appLoading:stop');
     };
 
-    this.follow = ($q) => {
+    this.follow = (promise) => {
       this.start();
-      return $q.then((obj) => {
+      return promise.then((obj) => {
         return obj;
       }).finally((r) => {
         this.stop();

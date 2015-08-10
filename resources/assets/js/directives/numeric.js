@@ -25,8 +25,6 @@ module.exports = function Numeric($rootScope, $timeout) {
       scope.fieldLabel = $rootScope.str(scope.i18nLabel);
       scope.fieldContext = `${scope.formName}.${scope.fieldName}`;
       scope.fieldId = `app-number-${scope.formName}-${scope.fieldName}`;
-      // é necessário, já que o numero inserido nem sempre é um decimal valido
-      // por causa da `,` e dos `.`.
 
       var decimal = scope.decimal || ",";
       var thousand = scope.thousand || ".";
@@ -49,8 +47,6 @@ module.exports = function Numeric($rootScope, $timeout) {
         localCommit = true;
       };
 
-
-
       element
         .find('input')
         .mask(`#${thousand}##0${decimal}${decimals}`, {
@@ -70,7 +66,7 @@ module.exports = function Numeric($rootScope, $timeout) {
 
       init();
 
-      scope.$watch(function () {
+      scope.$watch('fieldModel', function () {
         if (localCommit) {
           localCommit = false;
           return;

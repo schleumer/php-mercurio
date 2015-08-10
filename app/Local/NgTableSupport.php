@@ -13,9 +13,11 @@ trait NgTableSupport
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Closure $custom
+     * @param array $searchFields
+     * @param array $sortFields
      * @return NgTableSupport
      */
-    public static function ngTable(Request $request, \Closure $custom = null)
+    public static function ngTable(Request $request, \Closure $custom = null, $searchFields = [], $sortFields = [])
     {
         $limit = (int)$request->get('count', 10);
         $page = (int)$request->get('page', 1);
@@ -31,20 +33,42 @@ trait NgTableSupport
             $filters = array();
         }
 
-        /* @var \Illuminate\Database\Query\Builder $query */
+        $aloneSearch = $request->get('q', null);
+
         $query = static::select();
 
         if (is_callable($custom)) {
-            $custom($query);
+            $query = $custom($query, [
+                'search' => $aloneSearch,
+                'filters' => $filters
+            ]);
+        }
+
+        if (!$query) {
+            /* @var \Illuminate\Database\Query\Builder $query */
+            $query = static::select();
+
+            $query->whereNull('deleted_at');
         }
 
         foreach ($sorting as $field => $type) {
+            if(!in_array($field, $sortFields)) continue;
             $query->orderBy($field, $type == "asc" ? "ASC" : "DESC");
         }
 
-        foreach($filters as $field => $filter) {
-            $query->orWhere($field, 'like', "%$filter%");
-        }
+        $query->where(function($clause) use ($filters, $aloneSearch, $searchFields) {
+            foreach($filters as $field => $filter) {
+                if(!in_array($field, $searchFields)) continue;
+                $clause->orWhere($field, 'like', "%$filter%");
+            }
+
+            if($aloneSearch) {
+                foreach($searchFields as $field) {
+                    if(!in_array($field, $searchFields)) continue;
+                    $clause->orWhere($field, 'like', "$aloneSearch%");
+                }
+            }
+        });
 
         $total = $query->count();
 

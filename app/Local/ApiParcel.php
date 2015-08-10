@@ -19,6 +19,7 @@ class ApiParcel extends JsonResponse implements \JsonSerializable
     public function addMessage($code, $message)
     {
         $this->messages[] = new ApiMessage($code, $message);
+        $this->update();
         return $this;
     }
 

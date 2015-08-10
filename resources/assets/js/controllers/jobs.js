@@ -47,7 +47,7 @@ module.exports = function JobsController($scope, $rootScope, $q, $location, $rou
   }
 
   $scope.search = (search) => {
-    $scope.tableParams.filter({id: search.query, name: search.query, cnpj: search.query});
+    $scope.tableParams.filter({id: search.query, name: search.query});
   };
 
   $scope.save = () => {
@@ -66,7 +66,7 @@ module.exports = function JobsController($scope, $rootScope, $q, $location, $rou
 
   $scope.remove = (item) => {
     Modals
-      .confirm("Você deseja realmente remover esse cliente?")
+      .confirm("Você deseja realmente remover esse serviço?")
       .then(function () {
         Loading.followR(Jobs.delete({id: item.id})).then(() => {
           $scope.tableParams.reload();

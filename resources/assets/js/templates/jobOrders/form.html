@@ -1,0 +1,53 @@
+<app-page>
+    <app-page-header icon="label">{{ str("job-orders-header") }}</app-page-header>
+    <app-page-container>
+        <app-page-toolbar items="toolbarItems"></app-page-toolbar>
+        <app-form name="job_order">
+            <div class="row">
+                <div class="col-xs-6">
+                    <app-remote-select
+                            name="customer"
+                            label="Selecione um cliente"
+                            url="/customers"
+                            ng-model="form.customer">
+                    </app-remote-select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <app-text-area type="text"
+                                   name="note"
+                                   label="job-order-note"
+                                   ng-model="form.note"
+                                   lines="7"></app-text-area>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <app-list-of-items item-key="name" ng-model="form.jobs"
+                                       label="Serviços">
+                        <app-remote-select
+                                label="Selecione um serviço"
+                                url="/jobs"
+                                name="job-select"
+                                ng-model="value"
+                                hide-label="true">
+                        </app-remote-select>
+                    </app-list-of-items>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- TODO: directive -->
+            <div class="row app-form-footer">
+                <div class="col-xs-12">
+                    <a class="btn btn-primary pull-right" ng-click="save()" style="margin-left: 10px">Salvar</a>
+                    <a class="btn btn-default pull-right" href="#/job-orders">Cancelar</a>
+                </div>
+            </div>
+        </app-form>
+    </app-page-container>
+</app-page>

@@ -19,7 +19,8 @@ module.exports = function Text($rootScope) {
       fieldName: '@name',
       fieldType: '@type',
       i18nLabel: '@label',
-      hideLabel: '='
+      hideLabel: '=',
+      lines: '@'
     },
     link: (scope, element, attrs, form) => {
       scope.formName = form.getName();

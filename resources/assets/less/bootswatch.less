@@ -149,7 +149,8 @@ input[type=number],
 [type=password].form-control,
 [type=email].form-control,
 [type=tel].form-control,
-[contenteditable].form-control {
+[contenteditable].form-control,
+.form-control {
   padding: 0;
   border: none;
   border-radius: 0;
@@ -594,3 +595,97 @@ input[type="checkbox"],
   }
 }
 
+.select2-container--default {
+  .select2-selection--single {
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-left: 0;
+    padding-right: 0\9; // remove padding for < ie9 since default arrow can't be removed
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    .box-shadow(inset 0 -1px 0 #ddd);
+    font-size: 16px;
+    line-height: 1.5;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &.input {
+      &-sm {
+        font-size: @font-size-small;
+      }
+
+      &-lg {
+        font-size: @font-size-large;
+      }
+    }
+
+    &:focus {
+      .box-shadow(inset 0 -2px 0 @brand-primary);
+    }
+
+    &[multiple] {
+      background: none;
+    }
+
+    .select2-selection__rendered {
+      color: #444;
+      line-height: 32px;
+    }
+
+    .select2-selection__clear {
+      cursor: pointer;
+      float: right;
+      font-weight: bold;
+    }
+
+    .select2-selection__placeholder {
+      color: #000;
+    }
+
+    .select2-selection__arrow {
+      height: 34px;
+
+      position: absolute;
+
+      top: 1px;
+      right: 1px;
+
+      width: 20px;
+
+      b {
+        border-color: #888 transparent transparent transparent;
+        border-style: solid;
+        border-width: 5px 4px 0 4px;
+
+        height: 0;
+        left: 50%;
+
+        margin-left: -4px;
+        margin-top: -2px;
+
+        position: absolute;
+
+        top: 50%;
+        width: 0;
+      }
+    }
+  }
+
+  &.select2-container--focus {
+    .select2-selection--single {
+      .box-shadow(inset 0 -2px 0 @brand-primary);
+      outline: 0;
+    }
+    .select2-selection--multiple {
+      .box-shadow(inset 0 -2px 0 @brand-primary);
+      outline: 0;
+
+    }
+  }
+}

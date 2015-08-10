@@ -9,7 +9,9 @@ var angular = require("angular")
   // VONTADE DE MATAR UM
   , angularTable = require("ng-table/dist/ng-table.js")
   , S = require("string")
-  , R = require("ramda");
+  , R = require("ramda")
+  , $ = require("jquery")
+  , moment = require("moment");
 
 var resources = require("./resources")
   , factories = require("./factories")
@@ -79,5 +81,21 @@ R.forEach(
     R.values,
     R.apply(app.controller)
   ), routes);
+
+app.filter("money", function() {
+  return function(input, decimal) {
+    // o desenvolvedor da jquery-mask-plugin é um fanfarrão
+    input = parseFloat(input).toFixed(2);
+    return "R$ " + $(`<span>${input}</span>`).mask("#.##0,00", {reverse: true}).text();
+  }
+});
+
+app.filter("maskDateTime", function() {
+  return function(input) {
+    return moment(input).format("L LTS");
+
+  }
+});
+
 
 app.run(boot);

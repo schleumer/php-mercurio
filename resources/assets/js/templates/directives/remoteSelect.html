@@ -1,0 +1,44 @@
+<div class="form-group app-remote-select">
+    <label ng-if="!hideLabel">{{ label }}</label>
+    <!--<input type="{{ fieldType }}" class="form-control" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="fieldModel">-->
+    <!--<select class="app-select col-xs-12"></select>-->
+    <div class="app-remote-select-holder" tabindex="0">
+        <div class="touch-area">
+            <div class="input-group">
+                <div class="fake-form-control">
+                    <div class="text-grayer">{{ getCurrentLabel() }}</div>
+                </div>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" tabindex="-1">
+                    <i class="zmdi zmdi-search" style="font-size: 15px"></i>
+                </button>
+            </span>
+            </div>
+            <app-error for="{{ fieldContext }}"></app-error>
+        </div>
+        <div class="app-remote-select-dropdown">
+            <div class="row">
+                <div class="col-xs-12 app-remote-select-search-holder">
+                    <div
+                            class="fake-form-control app-remote-select-search-input-shadow"
+                            ng-bind="getCurrentShadow()"></div>
+                    <input
+                            type="text"
+                            class="form-control app-remote-select-search-input"
+                            ng-model="ui.search"
+                            placeholder="{{getPlaceholder()}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="max-height: 350px;overflow: auto">
+                    <ul class="nav nav-stacked app-remote-select-list">
+                        <li ng-repeat="result in ui.results" ng-class="getClassIfActive($index)"
+                            ng-click="pick($index)">
+                            <a>{{result.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

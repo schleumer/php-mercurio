@@ -1,6 +1,6 @@
 <div class="form-group">
     <label ng-if="!hideLabel">{{ fieldLabel }}</label>
-    <textarea class="form-control" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="fieldModel">
+    <textarea class="form-control" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="fieldModel" rows="{{ lines || 1 }}">
 
     </textarea>
     <app-error for="{{ fieldContext }}"></app-error>

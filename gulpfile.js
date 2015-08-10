@@ -78,7 +78,8 @@ gulp.task('browserify-app', function () {
     entries: ['./resources/assets/js/app.js'],
     paths: ['./resources/assets/js/'],
     debug: false,
-    extensions: ['.html', '.js']
+    extensions: ['.html', '.js'],
+    poll: true
   });
   var appBundle = watchify(browserify(appBundleArgs))
     .transform(babelify.configure({
