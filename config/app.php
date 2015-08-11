@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'Horae Ordens de Serviço',
-    'short_name' => 'Horae',
+    'name' => 'Mercurio Ordens de Serviço',
+    'short_name' => 'Mercurio',
 
     /*
     |--------------------------------------------------------------------------

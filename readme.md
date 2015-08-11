@@ -1,4 +1,4 @@
-# Horæ, esboço para sistemas de ordem de serviços
+# Mercurio, esboço para sistemas de ordem de serviços
 
 Projeto simples usando Angular e Laravel, com uma tentativa de padronizagem do source para o frontend:
 
@@ -10,6 +10,7 @@ resources
       `- controllers    # base dos controllers
       `- directives     # base das directives
       `- factories      # factories gerais
+      `- services       # services gerais
       `- helpers        # alguns helpers
       `- lang           # i18n
       `- resources      # factories de resources
@@ -35,6 +36,17 @@ tornando o código mais legivel e menos bagunçado :)
 ---------------------
 
 Os templates são embutidos no proprio JavaScript evitando requests descenessarias e delays na UI(perder 2ms na request por 3kb a mais no arquivo é melhor que 202ms numa request futura para um unico recurso)
+
+---------------------
+
+# TODO
+
+
+- [ ] melhorar os controllers do angular abstraindo o que tiver de ser abstraído
+- [ ] melhorar a leitura do `app.js`, está muito confuso e complexo
+- [ ] melhorar o trait `NgTableSupport`, está confuso e ineficiente em certos casos
+- [ ] melhorar os templates do angular abstraindo elementos repetidos(ctrl-c + ctrl-v)
+
 
 ---------------------
 

@@ -38,7 +38,7 @@ document
 // implicando que o JS seja o ultimo arquivo a carregar
 // </editor-fold>
 
-var app = angular.module('Horae', ['ngRoute', 'ngResource', 'ngStorage', 'ngTable']);
+var app = angular.module('Mercurio', ['ngRoute', 'ngResource', 'ngStorage', 'ngTable']);
 
 var validDirectiveName = (name) => {
   return `app${S(name).titleCase().s}`

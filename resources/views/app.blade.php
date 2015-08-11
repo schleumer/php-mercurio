@@ -88,7 +88,7 @@
     </style>
 </head>
 <body>
-<div ng-app="Horae">
+<div ng-app="Mercurio">
     {{--<span ng-bind="testInterations()"></span>--}}
     <div id="anti-flickering-loading">
         {{-- trans('home.loading') --}}
