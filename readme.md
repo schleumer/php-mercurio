@@ -46,6 +46,11 @@ Os templates são embutidos no proprio JavaScript evitando requests descenessari
 - [ ] melhorar a leitura do `app.js`, está muito confuso e complexo
 - [ ] melhorar o trait `NgTableSupport`, está confuso e ineficiente em certos casos
 - [ ] melhorar os templates do angular abstraindo elementos repetidos(ctrl-c + ctrl-v)
+- [ ] melhorar as directives:
+  - [ ] `app-remote-select`, está confuso e ineficiente, e o source está bagunçado
+  - [ ] `app-list-of-items`, está confuso e ineficiente, e o source está bagunçado
+  - [ ] `app-numeric`, está confuso e ineficiente, e o source está bagunçado
+  - [ ] `app-left-nav`, está confuso e ineficiente, e o source está bagunçado
 
 
 ---------------------
