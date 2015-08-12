@@ -18,8 +18,12 @@ Route::get('/', function () {
 Route::post('auth/login', 'AuthController@postLogin');
 Route::get('auth/login', 'AuthController@getLogin');
 Route::delete('auth/login', 'AuthController@deleteLogin');
+Route::get('job-orders/print/{id}', 'JobOrdersController@getPrint');
+Route::get('reports/customers', 'ReportsController@getCustomers');
 
 Route::resource('users', 'UsersController');
 Route::resource('customers', 'CustomersController');
 Route::resource('jobs', 'JobsController');
 Route::resource('job-orders', 'JobOrdersController');
+Route::resource('payable-types', 'PayableTypesController');
+Route::resource('payables', 'PayablesController');

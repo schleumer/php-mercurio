@@ -1,0 +1,31 @@
+<app-page ng-init="init()">
+    <app-page-header icon="forward">{{ str("payables-header") }}</app-page-header>
+    <app-page-container>
+        <app-page-toolbar items="toolbarItems" with-search="true" on-search="search"></app-page-toolbar>
+        <div loading-container="tableParams.settings().$loading" class="app-page-table">
+            <table ng-table="tableParams" class="table" template-pagination="custom/pager">
+                <tr ng-repeat="item in $data">
+                    <td data-title="str('payable-id')" sortable="'payables.id'">
+                        {{item.id}}
+                    </td>
+                    <td data-title="str('payable-type')" sortable="'payable_types.name'">
+                        {{item.payable_type}}
+                    </td>
+                    <td data-title="str('payable-date')" sortable="'payables.date'">
+                        {{item.date}}
+                    </td>
+                    <td data-title="str('payable-price')">
+                        {{ item.price | money:2 }}
+                    </td>
+                    <td data-title="str('controls')" width="250">
+                        <div class="btn-group">
+                            <!--<a class="btn btn-default btn-xs">{{ str('view') }}</a>-->
+                            <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(item)}}">{{ str('edit') }}</a>
+                            <a class="btn btn-default btn-xs" ng-click="remove(item)">{{ str('delete') }}</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </app-page-container>
+</app-page>

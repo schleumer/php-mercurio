@@ -24,8 +24,15 @@ module.exports = [
   route(C.jobOrders, '/job-orders/new', require('templates/jobOrders/form.html'), 'JobOrdersController'),
   route(C.jobOrders, '/job-orders/edit/:id', require('templates/jobOrders/form.html'), 'JobOrdersController'),
 
+  route(C.payableTypes, '/payable-types', require('templates/payableTypes/index.html'), 'PayableTypesController',
+    meta('labels', i18n.all('payable-types', 'payable-types-desc'))),
+  route(C.payableTypes, '/payable-types/new', require('templates/payableTypes/form.html'), 'PayableTypesController'),
+  route(C.payableTypes, '/payable-types/edit/:id', require('templates/payableTypes/form.html'), 'PayableTypesController'),
+
   route(C.payables, '/payables', require('templates/payables/index.html'), 'PayablesController',
     meta('forward', i18n.all('payables', 'payables-desc'))),
+  route(C.payables, '/payables/new', require('templates/payables/form.html'), 'PayablesController'),
+  route(C.payables, '/payables/edit/:id', require('templates/payables/form.html'), 'PayablesController'),
 
   route(C.receivables, '/receivables', require('templates/receivables/index.html'), 'ReceivablesController',
     meta('backward', i18n.all('receivables', 'receivables-desc'))),

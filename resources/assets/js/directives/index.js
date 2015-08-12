@@ -21,5 +21,6 @@ module.exports = {
   pageContainer: require('./pageContainer'),
   pageToolbar: require('./pageToolbar'),
   listOfItems: require('./listOfItems'),
-  remoteSelect: require('./remoteSelect')
+  remoteSelect: require('./remoteSelect'),
+  dateTime: require('./dateTime')
 };

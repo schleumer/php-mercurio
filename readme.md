@@ -1,4 +1,4 @@
-# Mercurio, esboço para sistemas de ordem de serviços
+# Mercúrio, esboço para sistemas de ordem de serviços
 
 Projeto simples usando Angular e Laravel, com uma tentativa de padronizagem do source para o frontend:
 
@@ -51,6 +51,7 @@ Os templates são embutidos no proprio JavaScript evitando requests descenessari
   - [ ] `app-list-of-items`, está confuso e ineficiente, e o source está bagunçado
   - [ ] `app-numeric`, está confuso e ineficiente, e o source está bagunçado
   - [ ] `app-left-nav`, está confuso e ineficiente, e o source está bagunçado
+- [ ] ACL
 
 
 ---------------------

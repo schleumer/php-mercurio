@@ -12,7 +12,7 @@ trait NgTableSupport
 {
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $custom
+     * @param \Closure $custom Do not make queries that may change total rows number here.
      * @param array $searchFields
      * @param array $sortFields
      * @return NgTableSupport
@@ -37,20 +37,6 @@ trait NgTableSupport
 
         $query = static::select();
 
-        if (is_callable($custom)) {
-            $query = $custom($query, [
-                'search' => $aloneSearch,
-                'filters' => $filters
-            ]);
-        }
-
-        if (!$query) {
-            /* @var \Illuminate\Database\Query\Builder $query */
-            $query = static::select();
-
-            $query->whereNull('deleted_at');
-        }
-
         foreach ($sorting as $field => $type) {
             if(!in_array($field, $sortFields)) continue;
             $query->orderBy($field, $type == "asc" ? "ASC" : "DESC");
@@ -71,6 +57,13 @@ trait NgTableSupport
         });
 
         $total = $query->count();
+
+        if (is_callable($custom)) {
+            $query = $custom($query, [
+                'search' => $aloneSearch,
+                'filters' => $filters
+            ]);
+        }
 
         $query->limit($limit);
         $query->offset($offset);

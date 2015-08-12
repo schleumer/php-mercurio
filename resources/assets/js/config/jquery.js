@@ -6,6 +6,7 @@ window.$ = window.jQuery = $;
 require('bootstrap');
 require('jquery-mask-plugin');
 require('select2');
+require('eonasdan-bootstrap-datetimepicker');
 
 $.jMaskGlobals.watchInputs = false;
 

@@ -43,11 +43,13 @@
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0",
     "watchify": "^3.3.0",
-    "yamlify": "^0.1.2"
-  },
-  "dependencies": {
+    "yamlify": "^0.1.2",
+    "eonasdan-bootstrap-datetimepicker": "^4.15.35",
     "jquery-mask-plugin": "^1.13.4",
     "toastr": "^2.1.0"
+  },
+  "dependencies": {
+
   },
   "frontendDependencies": [
     "angular",
@@ -64,6 +66,8 @@
     "toastr",
     "jquery-mask-plugin",
     "select2",
-    "jquery.mousewheel"
+    "jquery.mousewheel",
+    "eonasdan-bootstrap-datetimepicker",
+    "moment"
   ]
 }

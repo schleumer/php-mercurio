@@ -3,19 +3,17 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobsTable extends Migration
+class CreatePayableTypesTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('payable_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description')->nullable();;
-            $table->decimal('price', 20, 2)->nullable();
-
+            $table->text('description')
+                ->nullable();
             $table->timestamps();
-
             $table->softDeletes();
         });
 
@@ -23,6 +21,6 @@ class CreateJobsTable extends Migration
 
     public function down()
     {
-        Schema::drop('jobs');
+        Schema::drop('payable_types');
     }
 }

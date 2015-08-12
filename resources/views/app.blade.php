@@ -89,6 +89,13 @@
 </head>
 <body>
 <div ng-app="Mercurio">
+    <div id="device-message" class="container">
+        <div class="row">
+            <div class="alert alert-info">
+                {{ trans('A versão para mobiles ainda não está disponível') }}
+            </div>
+        </div>
+    </div>
     {{--<span ng-bind="testInterations()"></span>--}}
     <div id="anti-flickering-loading">
         {{-- trans('home.loading') --}}
@@ -105,7 +112,7 @@
         <div class="ui-blocker"></div>
         <div class="essa-div-nao-e-uma-gambiarra" ng-show="!isUserPresent()"></div>
         <nav class="navbar navbar-inverse" id="app-navbar" ng-class="getAppBarNavClass()">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-4" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>

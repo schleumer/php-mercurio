@@ -3,6 +3,7 @@
 use App\Models\Customer;
 use App\Models\Job;
 use App\Models\JobOrder;
+use App\Models\PayableType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -28,12 +29,13 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
 
+        DB::table('payables')->delete();
+        DB::table('payable_types')->delete();
         DB::table('job_order_jobs')->delete();
         DB::table('job_orders')->delete();
         DB::table('jobs')->delete();
         DB::table('customer_phones')->delete();
         DB::table('customers')->delete();
-
         DB::table('users')->delete();
 
 
@@ -49,6 +51,8 @@ class DatabaseSeeder extends Seeder
                 'description' => "Serviço de teste $x"
             ]);
         }
+
+        $customers = [];
 
         foreach(range(0, 15) as $x) {
             $customer = Customer::create([
@@ -84,12 +88,34 @@ class DatabaseSeeder extends Seeder
             $customerJobOrder->jobs()->sync($testJobs);
 
             $customerJobOrder->save();
+
+            $customers[] = $customer;
         }
 
+        $payableTypes = [];
 
+        foreach(range(0, 15) as $i) {
+            $payableTypes[] = PayableType::create(['name' => "Conta de Teste $i", 'description' => "Descrição do tipo $i"]);
+        }
 
+        $payables = [];
 
+        foreach($customers as $customer) {
+            foreach(range(0, rand(1, 5)) as $x) {
+                $type = current(array_pick_index($payableTypes, array_rand($payableTypes, 5)));
+                $payable = \App\Models\Payable::create([
+                    'payable_type_id' => $type->id,
+                    'date' => \Carbon\Carbon::now()->addDays(rand(1, 60)),
+                    'status' => rand(1, 2),
+                    'price' => $x * 100,
+                    'description' => "Descrição de uma conta a pagar {$customer->id}/$x"
+                ]);
 
+                $payable->save();
+
+                $payables[] = $payable;
+            }
+        }
 
         Model::reguard();
     }

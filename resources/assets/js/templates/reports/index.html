@@ -1,1 +1,22 @@
-<b>teste</b>
+<app-page ng-init="init()">
+    <app-page-header icon="assignment">{{ str("reports-header") }}</app-page-header>
+    <app-page-container>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Relatório de Clientes</td>
+                <td>
+                    <a href="/reports/customers" target="_blank"><i class="zmdi zmdi-link"></i> Acessar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </app-page-container>
+</app-page>

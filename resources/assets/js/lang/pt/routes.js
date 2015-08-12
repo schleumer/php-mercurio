@@ -14,5 +14,7 @@ module.exports =  {
     "users": "Usuários",
     "users-desc": `descrição`,
     "reports": "Relatórios",
-    "reports-desc": `descrição`
+    "reports-desc": `descrição`,
+    "payable-types": "Tipos de Pagamento",
+    "payable-types-desc": `descrição`
 };

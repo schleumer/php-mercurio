@@ -110,6 +110,11 @@ module.exports = function RemoteSelect($rootScope, $http, $timeout) {
         return current ? current.name : scope.label;
       };
 
+      scope.getLabelClass = () => {
+        var current = scope.getCurrent();
+        return current ? 'app-remote-select-selected  ' : 'text-grayer';
+      };
+
       scope.getCurrentShadow = () => {
         var current = scope.getCurrent();
         return (current && current.name && current.name.indexOf(scope.ui.search) == 0) ? current.name : '';

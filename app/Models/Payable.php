@@ -10,27 +10,30 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Local\NgTableSupport;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class JobOrder extends Model
+class Payable extends Model
 {
     use NgTableSupport, SoftDeletes;
 
-    protected $table = 'job_orders';
+    const STATUS_OK = 1;
+    const STATUS_PENDING = 2;
+
+    protected $table = 'payables';
 
     protected $fillable = [
-        'note',
-        'customer_id'
+        'name',
+        'price',
+        'date',
+        'payable_type_id',
+        'status',
+        'description'
     ];
 
     protected $hidden = [];
 
     protected $dates = ['deleted_at'];
 
-    public function customer() {
-        return $this->belongsTo(Customer::class);
+    public function payableType() {
+        return $this->belongsTo(PayableType::class);
     }
 
-    public function jobs() {
-        // TODO: ver por que é preciso declarar a tabela e por que não esta funcionando automaticamente
-        return $this->belongsToMany(Job::class, 'job_order_jobs')->withPivot('price');
-    }
 }

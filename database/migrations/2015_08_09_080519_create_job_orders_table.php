@@ -11,7 +11,9 @@ class CreateJobOrdersTable extends Migration
         Schema::create('job_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
-            $table->text('note');
+            $table->text('note')->nullable();
+            $table->tinyInteger('status')
+                ->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -36,7 +38,7 @@ class CreateJobOrdersTable extends Migration
 
     public function down()
     {
-        Schema::drop('job_orders');
         Schema::drop('job_order_jobs');
+        Schema::drop('job_orders');
     }
 }

@@ -63,6 +63,23 @@ module.exports = function JobOrdersController($scope, $rootScope, $q, $location,
 
   };
 
+  $scope.getTotal = () => {
+    return R.ifElse(
+      R.allPass([
+        Array.isArray,
+        R.compose(
+          R.not,
+          R.isEmpty
+        )
+      ]),
+      R.pipe(
+        R.map(_ => parseFloat(_.price)),
+        R.sum
+      ),
+      R.always(0)
+    )($scope.form.jobs);
+  };
+
   $scope.remove = (item) => {
     Modals
       .confirm("Você deseja realmente remover essa ordem de serviço?")

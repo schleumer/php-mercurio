@@ -1,28 +1,21 @@
 <app-page ng-init="init()">
-    <app-page-header icon="label">{{ str("job-orders-header") }}</app-page-header>
+    <app-page-header icon="labels">{{ str("payable-types-header") }}</app-page-header>
     <app-page-container>
         <app-page-toolbar items="toolbarItems" with-search="true" on-search="search"></app-page-toolbar>
         <div loading-container="tableParams.settings().$loading" class="app-page-table">
             <table ng-table="tableParams" class="table" template-pagination="custom/pager">
                 <tr ng-repeat="item in $data">
-                    <td data-title="str('job-order-id')" sortable="'job_orders.id'">
+                    <td data-title="str('payable-type-id')" sortable="'id'">
                         {{item.id}}
                     </td>
-                    <td data-title="str('job-order-customer')" sortable="'customers.name'">
-                        {{item.customer_name}}
-                    </td>
-                    <td data-title="str('job-order-job')">
-                        {{item.job_name}}
-                    </td>
-                    <td data-title="str('job-order-created')" sortable="'job_orders.created_at'">
-                        {{item.created_at | maskDateTime }}
+                    <td data-title="str('payable-type-name')" sortable="'name'">
+                        {{item.name}}
                     </td>
                     <td data-title="str('controls')" width="250">
                         <div class="btn-group">
                             <!--<a class="btn btn-default btn-xs">{{ str('view') }}</a>-->
                             <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(item)}}">{{ str('edit') }}</a>
                             <a class="btn btn-default btn-xs" ng-click="remove(item)">{{ str('delete') }}</a>
-                            <a class="btn btn-default btn-xs" ng-href="{{ '/job-orders/print/' + item.id }}" target="_blank">{{ str('print') }}</a>
                         </div>
                     </td>
                 </tr>

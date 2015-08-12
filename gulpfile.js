@@ -59,7 +59,10 @@ frontendDependencies.forEach(function (lib) {
 // -----------------------
 
 gulp.task('copy-fonts', function () {
-  return gulp.src('./node_modules/material-design-iconic-font/dist/fonts/**').pipe(gulp.dest(pub('fonts')));
+  return gulp.src([
+    './node_modules/material-design-iconic-font/dist/fonts/**',
+    './node_modules/bootstrap/dist/fonts/**'
+  ]).pipe(gulp.dest(pub('fonts')));
 });
 
 gulp.task('copy-images', function () {

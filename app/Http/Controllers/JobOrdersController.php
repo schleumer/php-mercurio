@@ -98,9 +98,19 @@ class JobOrdersController extends Controller
     public function index(Request $request)
     {
         return JobOrder::ngTable($request, function ($query, $params) {
-            return $query->leftJoin('customers', 'customers.id', '=', 'job_orders.customer_id')
-                ->select('job_orders.*', 'customers.name as customer_name');
+            return $query
+                ->leftJoin('customers', 'customers.id', '=', 'job_orders.customer_id')
+                ->leftJoin('job_order_jobs', 'job_order_jobs.job_order_id', '=', 'job_orders.id', 'outer')
+                ->leftJoin('jobs', 'job_order_jobs.job_id', '=', 'jobs.id')
+                ->groupBy('job_orders.id')
+                ->select('job_orders.*', 'customers.name as customer_name', 'jobs.name as job_name');
         }, ['job_orders.id', 'customers.name'],
             ['job_orders.id', 'customers.name', 'job_orders.created_at']);
+    }
+
+    public function getPrint(Request $request, $id) {
+        return view('jobOrders/print', ['jobOrder' =>
+            JobOrder::with(['jobs', 'customer'])->find($id)
+        ]);
     }
 }

@@ -26,6 +26,9 @@ module.exports = function Numeric($rootScope, $timeout) {
       scope.fieldContext = `${scope.formName}.${scope.fieldName}`;
       scope.fieldId = `app-number-${scope.formName}-${scope.fieldName}`;
 
+      var $input = element
+        .find('input');
+
       var decimal = scope.decimal || ",";
       var thousand = scope.thousand || ".";
       var decimalsSize = scope.decimals || 2;
@@ -33,25 +36,24 @@ module.exports = function Numeric($rootScope, $timeout) {
 
       var localCommit = false;
 
+      var mask = `#${thousand}##0${decimal}${decimals}`;
+      var maskOptions = {
+        reverse: true
+      };
+
       var init = () => {
-        // todo: fix
-        scope.auxModel = scope.fieldModel
-          ? (
-            typeof scope.fieldModel == "string"
-            ? parseFloat(scope.fieldModel).toFixed(decimalsSize)
-            : scope.fieldModel.toFixed(decimalsSize)
-          ) : "";
+        scope.auxModel = scope.fieldModel || "";
 
         scope.fieldModel = parseFloat(scope.fieldModel || 0);
 
         localCommit = true;
+
+        // ಠ_ಠ
+        $input.val(scope.auxModel).mask(mask, maskOptions).trigger('input');
       };
 
-      element
-        .find('input')
-        .mask(`#${thousand}##0${decimal}${decimals}`, {
-          reverse: true
-        }).on('input', function () {
+      $input
+        .mask(mask, maskOptions).on('input', function () {
           $timeout(() => {
             scope.$apply(() => {
               scope.fieldModel = parseFloat(this.value
@@ -59,16 +61,14 @@ module.exports = function Numeric($rootScope, $timeout) {
                   .join('')
                   .split(decimal)
                   .join('.')) || 0;
-              localCommit = true;
             });
           });
         });
 
       init();
 
-      scope.$watch('fieldModel', function () {
-        if (localCommit) {
-          localCommit = false;
+      scope.$watch('fieldModel', function (newVal, oldVal) {
+        if (newVal == oldVal) {
           return;
         }
 

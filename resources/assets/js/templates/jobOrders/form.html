@@ -39,6 +39,12 @@
                 </div>
             </div>
 
+            <div class="row" ng-if="form.jobs && form.jobs.length">
+                <div class="col-xs-12" style="text-align: right;">
+                    Total: <b style="font-size: 20px;">{{ getTotal() | money }}</b>
+                </div>
+            </div>
+
             <hr />
 
             <!-- TODO: directive -->

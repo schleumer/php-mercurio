@@ -6,7 +6,7 @@
         <div class="touch-area">
             <div class="input-group">
                 <div class="fake-form-control">
-                    <div class="text-grayer">{{ getCurrentLabel() }}</div>
+                    <div ng-class="getLabelClass()">{{ getCurrentLabel() }}</div>
                 </div>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" tabindex="-1">

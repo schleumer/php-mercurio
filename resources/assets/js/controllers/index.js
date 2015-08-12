@@ -5,15 +5,6 @@
  * por isso é melhor chamar /
  * como home e não como index.
  * @module controllers
- * @type {{
- *   home: (*[]|exports|module.exports),
- *   customers: (*[]|exports|module.exports),
- *   jobOrders: (*[]|exports|module.exports),
- *   jobs: (*[]|exports|module.exports),
- *   payables: (*[]|exports|module.exports),
- *   receivables: (*[]|exports|module.exports)
- *   auth: (*[]|exports|module.exports)
- * }}
  */
 module.exports = {
   home: require('./home'),
@@ -25,5 +16,6 @@ module.exports = {
   auth: require('./auth'),
   logout: require('./logout'),
   reports: require('./reports'),
-  users: require('./users')
+  users: require('./users'),
+  payableTypes: require('./payableTypes')
 };

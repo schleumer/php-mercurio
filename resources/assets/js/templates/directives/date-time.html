@@ -1,0 +1,5 @@
+<div class="form-group">
+    <label ng-if="!hideLabel">{{ fieldLabel }}</label>
+    <input type="text" class="form-control app-date-time" id="{{ fieldId }}" placeholder="{{ fieldLabel }}" ng-model="aux">
+    <app-error for="{{ fieldContext }}"></app-error>
+</div>

@@ -1,5 +1,6 @@
 @import "../../../node_modules/material-design-iconic-font/less/material-design-iconic-font";
 @import "../../../node_modules/toastr/toastr.less";
+@import "../../../node_modules/eonasdan-bootstrap-datetimepicker/src/less/_bootstrap-datetimepicker";
 
 .zmdi-backward {
   .zmdi-forward;
@@ -24,7 +25,8 @@ html {
 #app {
   margin-top: 10px;
   padding: 0;
-  min-height: 600px;
+  min-width: 1000px;
+  min-height: 700px;
   position: relative;
   margin-bottom: 50px;
   .transition(all 0.1s);
@@ -191,13 +193,19 @@ html {
 .app-remote-select {
   .app-remote-select-holder {
     position: relative;
-    z-index: 1;
+    .touch-area {
+      .fake-form-control {
+        .app-remote-select-selected {
+          color: @text-color;
+        }
+      }
+    }
     .app-remote-select-dropdown {
       display: none;
       box-sizing: content-box;
       background-color: @panel-bg;
       position: absolute;
-      padding: 15px 15px 0px;
+      padding: 15px;
       width: 100%;
       border: 1px solid @dropdown-border;
       -webkit-border-radius: @border-radius-base;
@@ -205,7 +213,7 @@ html {
       border-radius: @border-radius-base;
       top: -16px;
       left: -16px;
-      z-index: 2;
+      z-index: 99;
       .box-shadow(0 1px 4px rgba(0,0,0,.3));
 
 
@@ -244,4 +252,21 @@ html {
 .fake-form-control {
   .form-control;
   line-height: @input-height-base;
+}
+
+#device-message {
+  margin-top: 20px;
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #device-message {
+    display: block;
+  }
+}
+
+@media print {
+  #device-message {
+    display: none;
+  }
 }
