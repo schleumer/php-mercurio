@@ -14,6 +14,10 @@ class JobOrder extends Model
 {
     use NgTableSupport, SoftDeletes;
 
+    const STATUS_OK = 1;
+    const STATUS_PENDING = 2;
+
+
     protected $table = 'job_orders';
 
     protected $fillable = [

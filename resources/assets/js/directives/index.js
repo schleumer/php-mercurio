@@ -22,5 +22,6 @@ module.exports = {
   pageToolbar: require('./pageToolbar'),
   listOfItems: require('./listOfItems'),
   remoteSelect: require('./remoteSelect'),
-  dateTime: require('./dateTime')
+  dateTime: require('./dateTime'),
+  dropdown: require('./dropdown')
 };

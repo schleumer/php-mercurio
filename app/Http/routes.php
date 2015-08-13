@@ -21,6 +21,8 @@ Route::delete('auth/login', 'AuthController@deleteLogin');
 Route::get('job-orders/print/{id}', 'JobOrdersController@getPrint');
 Route::get('reports/customers', 'ReportsController@getCustomers');
 
+Route::post('payables/set-status/{id}', 'PayablesController@postSetStatus');
+
 Route::resource('users', 'UsersController');
 Route::resource('customers', 'CustomersController');
 Route::resource('jobs', 'JobsController');

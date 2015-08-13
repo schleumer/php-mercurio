@@ -37,11 +37,6 @@ trait NgTableSupport
 
         $query = static::select();
 
-        foreach ($sorting as $field => $type) {
-            if(!in_array($field, $sortFields)) continue;
-            $query->orderBy($field, $type == "asc" ? "ASC" : "DESC");
-        }
-
         $query->where(function($clause) use ($filters, $aloneSearch, $searchFields) {
             foreach($filters as $field => $filter) {
                 if(!in_array($field, $searchFields)) continue;
@@ -63,6 +58,11 @@ trait NgTableSupport
                 'search' => $aloneSearch,
                 'filters' => $filters
             ]);
+        }
+
+        foreach ($sorting as $field => $type) {
+            if(!in_array($field, $sortFields)) continue;
+            $query->orderBy($field, $type == "asc" ? "ASC" : "DESC");
         }
 
         $query->limit($limit);

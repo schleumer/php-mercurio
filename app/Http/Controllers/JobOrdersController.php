@@ -113,4 +113,12 @@ class JobOrdersController extends Controller
             JobOrder::with(['jobs', 'customer'])->find($id)
         ]);
     }
+
+    public function postSetStatus(Request $request, $id) {
+        $jobOrder = JobOrder::find($id);
+
+        $jobOrder->update(['status' => $request->input('status') || JobOrder::STATUS_PENDING]);
+
+        return $jobOrder;
+    }
 }

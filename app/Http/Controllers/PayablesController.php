@@ -78,8 +78,17 @@ class PayablesController extends Controller
         return Payable::ngTable($request, function ($query, $params) {
             return $query
                 ->leftJoin('payable_types', 'payable_types.id', '=', 'payables.payable_type_id')
+                ->orderBy('payables.status', 'desc')
                 ->select('payables.*', 'payable_types.name as payable_type');
         }, ['payables.id', 'payables.date'],
             ['payables.id', 'payables.date']);
+    }
+
+    public function postSetStatus(Request $request, $id) {
+        $payable = Payable::find($id);
+
+        $payable->update(['status' => $request->input('status') || Payable::STATUS_PENDING]);
+
+        return $payable;
     }
 }

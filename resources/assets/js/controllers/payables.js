@@ -6,7 +6,7 @@ var R = require('ramda');
  * @module controller
  * @ngInject
  */
-module.exports = function PayablesController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Payables, Loading, Modals) {
+module.exports = function PayablesController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, Payables, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [
@@ -75,7 +75,40 @@ module.exports = function PayablesController($scope, $rootScope, $q, $location, 
 
   $scope.getEditUrl = (payable) => {
     return `#/payables/edit/${payable.id}`;
-  }
+  };
 
+
+  $scope.getStatusClass = (status) => {
+    switch(status) {
+      case 1:
+        return "btn-success";
+        break;
+      case 2:
+        return "btn-warning";
+        break;
+      default:
+        return "btn-warning";
+        break;
+    }
+  };
+
+
+  $scope.getStatusName = (status) => {
+    switch(status) {
+      case 1:
+        return "Ok";
+        break;
+      case 2:
+        return "Pendente";
+        break;
+      default:
+        return "Pendente";
+        break;
+    }
+  };
+
+  $scope.setStatus = (item, status) => {
+    Loading.followP($http.post(`payables/set-status/${item.id}`, { status })).then(_ => item.status = status);
+  }
 
 };
