@@ -1,0 +1,41 @@
+<app-page ng-init="init()">
+    <app-page-header icon="label">{{ str("receivables-header") }}</app-page-header>
+    <app-page-container>
+        <app-page-toolbar items="toolbarItems" with-search="true" on-search="search"></app-page-toolbar>
+        <div loading-container="tableParams.settings().$loading" class="app-page-table">
+            <table ng-table="tableParams" class="table" template-pagination="custom/pager">
+                <tr ng-repeat="item in $data">
+                    <td data-title="str('receivable-id')" sortable="'receivables.id'">
+                        {{item.id}}
+                    </td>
+                    <td data-title="str('receivable-customer')" sortable="'customers.name'">
+                        {{item.customer_name}}
+                    </td>
+                    <td data-title="str('receivable-created')" sortable="'receivables.created_at'">
+                        {{item.created_at | maskDateTime }}
+                    </td>
+                    <td data-title="str('controls')" width="250">
+                        <div class="btn-group">
+                            <!--<a class="btn btn-default btn-xs">{{ str('view') }}</a>-->
+                            <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(item)}}">{{ str('edit') }}</a>
+                            <a class="btn btn-default btn-xs" ng-click="remove(item)">{{ str('delete') }}</a>
+
+                            <div class="btn-group">
+                                <a id="drop4" href="#" class="dropdown-toggle btn btn-xs btn-default" role="button"
+                                   aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" app-dropdown
+                                   ng-class="getStatusClass(item.status)">
+                                    {{getStatusName(item.status)}}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu" aria-labelledby="drop4">
+                                    <li><a href="javascript:;" ng-click="setStatus(item, 1)">Ok</a></li>
+                                    <li><a href="javascript:;" ng-click="setStatus(item, 2)">Pendente</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </app-page-container>
+</app-page>

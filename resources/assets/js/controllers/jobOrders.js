@@ -7,7 +7,7 @@ var R = require('ramda');
  * @type {*[]}
  * @ngInject
  */
-module.exports = function JobOrdersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, JobOrders, Loading, Modals) {
+module.exports = function JobOrdersController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, JobOrders, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [
@@ -92,7 +92,7 @@ module.exports = function JobOrdersController($scope, $rootScope, $q, $location,
 
   $scope.getEditUrl = (jobOrder) => {
     return `#/job-orders/edit/${jobOrder.id}`;
-  }
+  };
 
   $scope.getStatusClass = (status) => {
     switch(status) {

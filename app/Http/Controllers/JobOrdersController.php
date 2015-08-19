@@ -103,6 +103,7 @@ class JobOrdersController extends Controller
                 ->leftJoin('job_order_jobs', 'job_order_jobs.job_order_id', '=', 'job_orders.id', 'outer')
                 ->leftJoin('jobs', 'job_order_jobs.job_id', '=', 'jobs.id')
                 ->groupBy('job_orders.id')
+                ->orderBy('job_orders.status', 'asc')
                 ->select('job_orders.*', 'customers.name as customer_name', 'jobs.name as job_name');
         }, ['job_orders.id', 'customers.name'],
             ['job_orders.id', 'customers.name', 'job_orders.created_at']);
@@ -115,9 +116,10 @@ class JobOrdersController extends Controller
     }
 
     public function postSetStatus(Request $request, $id) {
+        /** @var JobOrder $jobOrder */
         $jobOrder = JobOrder::find($id);
-
-        $jobOrder->update(['status' => $request->input('status') || JobOrder::STATUS_PENDING]);
+        $jobOrder->status = $request->input('status') ?: JobOrder::STATUS_PENDING;
+        $jobOrder->save();
 
         return $jobOrder;
     }

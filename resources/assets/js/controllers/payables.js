@@ -46,7 +46,7 @@ module.exports = function PayablesController($scope, $rootScope, $q, $location, 
   }
 
   $scope.search = (search) => {
-    $scope.tableParams.filter({id: search.query, name: search.query});
+    $scope.tableParams.filter({'payables.id': search.query, name: search.query});
   };
 
   $scope.save = () => {

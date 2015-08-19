@@ -17,12 +17,25 @@
                     <td data-title="str('job-order-created')" sortable="'job_orders.created_at'">
                         {{item.created_at | maskDateTime }}
                     </td>
-                    <td data-title="str('controls')" width="250">
+                    <td data-title="str('controls')" width="300">
                         <div class="btn-group">
                             <!--<a class="btn btn-default btn-xs">{{ str('view') }}</a>-->
                             <a class="btn btn-default btn-xs" ng-href="{{getEditUrl(item)}}">{{ str('edit') }}</a>
                             <a class="btn btn-default btn-xs" ng-click="remove(item)">{{ str('delete') }}</a>
                             <a class="btn btn-default btn-xs" ng-href="{{ '/job-orders/print/' + item.id }}" target="_blank">{{ str('print') }}</a>
+
+                            <div class="btn-group">
+                                <a id="drop4" href="#" class="dropdown-toggle btn btn-xs btn-default" role="button"
+                                   aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" app-dropdown
+                                   ng-class="getStatusClass(item.status)">
+                                    {{getStatusName(item.status)}}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu" aria-labelledby="drop4">
+                                    <li><a href="javascript:;" ng-click="setStatus(item, 1)">Ok</a></li>
+                                    <li><a href="javascript:;" ng-click="setStatus(item, 2)">Pendente</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
                 </tr>

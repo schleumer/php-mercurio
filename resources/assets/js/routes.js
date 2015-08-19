@@ -35,7 +35,9 @@ module.exports = [
   route(C.payables, '/payables/edit/:id', require('templates/payables/form.html'), 'PayablesController'),
 
   route(C.receivables, '/receivables', require('templates/receivables/index.html'), 'ReceivablesController',
-    meta('backward', i18n.all('receivables', 'receivables-desc'))),
+    meta('forward', i18n.all('receivables', 'receivables-desc'))),
+  route(C.receivables, '/receivables/new', require('templates/receivables/form.html'), 'ReceivablesController'),
+  route(C.receivables, '/receivables/edit/:id', require('templates/receivables/form.html'), 'ReceivablesController'),
 
   route(C.reports, '/reports', require('templates/reports/index.html'), 'ReportsController',
     meta('assignment', i18n.all('reports', 'reports-desc'))),

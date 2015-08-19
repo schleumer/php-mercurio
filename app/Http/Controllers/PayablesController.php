@@ -86,8 +86,8 @@ class PayablesController extends Controller
 
     public function postSetStatus(Request $request, $id) {
         $payable = Payable::find($id);
-
-        $payable->update(['status' => $request->input('status') || Payable::STATUS_PENDING]);
+        $payable->status = $request->input('status') ?: Payable::STATUS_PENDING;
+        $payable->save();
 
         return $payable;
     }

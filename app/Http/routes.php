@@ -22,6 +22,8 @@ Route::get('job-orders/print/{id}', 'JobOrdersController@getPrint');
 Route::get('reports/customers', 'ReportsController@getCustomers');
 
 Route::post('payables/set-status/{id}', 'PayablesController@postSetStatus');
+Route::post('job-orders/set-status/{id}', 'JobOrdersController@postSetStatus');
+Route::post('receivables/set-status/{id}', 'ReceivablesController@postSetStatus');
 
 Route::resource('users', 'UsersController');
 Route::resource('customers', 'CustomersController');
@@ -29,3 +31,4 @@ Route::resource('jobs', 'JobsController');
 Route::resource('job-orders', 'JobOrdersController');
 Route::resource('payable-types', 'PayableTypesController');
 Route::resource('payables', 'PayablesController');
+Route::resource('receivables', 'ReceivablesController');

@@ -9,5 +9,6 @@ module.exports = {
   jobs: require('./jobs'),
   jobOrders: require('./jobOrders'),
   payableTypes: require('./payableTypes'),
-  payables: require('./payables')
+  payables: require('./payables'),
+  receivables: require('./receivables')
 };
