@@ -38,7 +38,9 @@ document
 // implicando que o JS seja o ultimo arquivo a carregar
 // </editor-fold>
 
-var app = angular.module('Mercurio', ['ngRoute', 'ngResource', 'ngStorage', 'ngTable']);
+var app = angular.module('Mercurio', ['ngRoute', 'ngResource', 'ngStorage', 'ngTable', 'mercurio.vendor']);
+
+app.value('appVersion', '$app-version$');
 
 var validDirectiveName = (name) => {
   return `app${S(name).titleCase().s}`

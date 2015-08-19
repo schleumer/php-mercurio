@@ -139,6 +139,9 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <footer style="color: #ddd;text-align: right">app: <span ng-bind="appVersion"></span> ~ vendor: <span ng-bind="vendorVersion"></span></footer>
+    </div>
 </div>
 
 <!-- -->

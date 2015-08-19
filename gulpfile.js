@@ -23,13 +23,25 @@ var gulp = require('gulp')
   , html = require('html-browserify')
 //, changed = require('gulp-changed')
 //, insert = require('gulp-insert')
-//, replace = require('gulp-replace')
+  , replace = require('gulp-replace')
 //, closureCompiler = require('gulp-closure-compiler')
   , R = require('ramda')
   , requireGlobify = require('require-globify')
   , pack = require('./package.json')
   , $i18n = require('./helpers/i18nify')
-  , frontendDependencies = pack['frontendDependencies'];
+  , frontendDependencies = pack['frontendDependencies']
+  , git = require('git-rev')
+  , moment = require('moment');
+
+var gitHash = null;
+
+git.short(function (str) {
+  gitHash = str;
+});
+
+var getVersion = function() {
+  return (moment().format("YYYY-MM-DD@HH:mm:ss")) + " / " + gitHash;
+};
 
 var dontFailPlease = function (error) {
   console.log(error.toString());
@@ -46,6 +58,7 @@ var langify = $i18n("./resources/assets/js/lang");
 // -----------------------
 
 var vendorBundle = browserify(R.merge(watchify.args, {
+  entries: ['./resources/assets/js/vendor.js'],
   paths: ['./resources/assets/js/'],
   debug: false
 }));
@@ -72,6 +85,7 @@ gulp.task('copy-images', function () {
 gulp.task('browserify-vendor', function () {
   return vendorBundle.bundle()
     .pipe(source('vendor.js'))
+    .pipe(replace(/\$vendor-version\$/g, getVersion))
     .pipe(gulp.dest(pub('js')));
 });
 
@@ -104,6 +118,7 @@ gulp.task('browserify-app', function () {
       .bundle()
       .on('error', dontFailPlease)
       .pipe(source('app.js'))
+      .pipe(replace(/\$app-version\$/g, getVersion))
       .pipe(gulp.dest(pub('js')));
   }
 

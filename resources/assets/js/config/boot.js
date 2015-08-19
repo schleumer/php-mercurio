@@ -2,8 +2,10 @@ var routes = require("../routes");
 var { routePrefix } = require('./index');
 
 /* @ngInject */
-module.exports = function run($rootScope, $templateCache, Auth) {
+module.exports = function run($rootScope, $templateCache, Auth, vendorVersion, appVersion) {
   $templateCache.put('custom/pager', require('templates/custom-pager.html'));
+  $rootScope.vendorVersion = vendorVersion;
+  $rootScope.appVersion = appVersion;
 
   $rootScope.appLoadingClass = "app-loading";
   $rootScope.routes = routes;
