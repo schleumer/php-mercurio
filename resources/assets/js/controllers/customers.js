@@ -4,9 +4,8 @@ var R = require('ramda');
 /**
  * Controller de Clientes
  * @module controllers
- * @ngInject
  */
-module.exports = function CustomersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Customers, Loading, Modals) {
+module.exports = /*@ngInject*/ function CustomersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Customers, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

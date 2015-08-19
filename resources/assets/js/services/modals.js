@@ -7,7 +7,7 @@ var $ = require('jquery')
  * @returns {Function}
  * @constructor
  */
-module.exports = function ModalsService($compile, $q, $rootScope, $templateCache) {
+module.exports = /*@ngInject*/ function ModalsService($compile, $q, $rootScope, $templateCache) {
   var Modals = function (options) {
     var modalFn = $compile(require('templates/modal.html'));
 
@@ -102,7 +102,7 @@ module.exports = function ModalsService($compile, $q, $rootScope, $templateCache
     return deferred.promise;
   };
 
+  Modals.CLOSE = 'close';
+
   return Modals;
 };
-
-module.exports.CLOSE = 'close';

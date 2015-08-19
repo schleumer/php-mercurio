@@ -7,9 +7,8 @@
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function PageHeader($rootScope) {
+module.exports = /*@ngInject*/ function PageHeader($rootScope) {
   return {
     restrict: 'E',
     transclude: true,
@@ -18,7 +17,7 @@ module.exports = function PageHeader($rootScope) {
     scope: {
       icon: '@'
     },
-    link: (scope, element, attrs, ctrl) => {
+    link: function (scope, element, attrs, ctrl) {
       scope.getTitleIcon = function() {
         return scope.icon ? `zmdi-${scope.icon}` : '';
       }

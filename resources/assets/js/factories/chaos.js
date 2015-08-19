@@ -5,9 +5,8 @@ var toastr = require("toastr");
  * ou para gambiarras em geral.
  * @param $rootScope
  * @param $q
- * @ngInject
  */
-module.exports = function ChaosFactory($rootScope, $q) {
+module.exports = /*@ngInject*/ function ChaosFactory($rootScope, $q) {
   var Chaos = function () {
     this.bring = function (message, alias, context = "") {
 

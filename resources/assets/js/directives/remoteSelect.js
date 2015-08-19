@@ -1,6 +1,13 @@
 var $ = require('jquery');
 var Bloodhound = require('typeahead.js/dist/bloodhound');
 
+var keys = {
+  UP: 38,
+  DOWN: 40,
+  ESC: 27,
+  ENTER: 13
+};
+
 /**
  * @todo Organizar
  * @returns {{
@@ -9,18 +16,8 @@ var Bloodhound = require('typeahead.js/dist/bloodhound');
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-
-var keys = {
-  UP: 38,
-  DOWN: 40,
-  ESC: 27,
-  ENTER: 13
-};
-
-
-module.exports = function RemoteSelect($rootScope, $http, $timeout) {
+module.exports = /*@ngInject*/ function RemoteSelect($rootScope, $http, $timeout) {
   return {
     restrict: 'E',
     require: '?^appForm',

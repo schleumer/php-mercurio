@@ -66,8 +66,7 @@ R.mapObjIndexed((resolver, name) => {
 
 app
   // EWWWWWWWWWWWW
-  /* @ngAnnotate */
-  .config(function routeConfig($routeProvider) {
+  .config(/*@ngInject*/ function routeConfig($routeProvider) {
     R.forEach(
       R.pipe(
         R.pick(['path', 'template', 'name', 'free', 'resolver']),
@@ -84,7 +83,7 @@ R.forEach(
     R.apply(app.controller)
   ), routes);
 
-app.filter("money", function() {
+app.filter("money", /*@ngInject*/ function() {
   return function(input, decimal) {
     // o desenvolvedor da jquery-mask-plugin é um fanfarrão
     input = parseFloat(input).toFixed(2);
@@ -92,7 +91,7 @@ app.filter("money", function() {
   }
 });
 
-app.filter("maskDateTime", function() {
+app.filter("maskDateTime", /*@ngInject*/ function() {
   return function(input) {
     return moment(input).format("L LTS");
 

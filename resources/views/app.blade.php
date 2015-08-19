@@ -146,7 +146,7 @@
 
 <!-- -->
 <script type="text/javascript" src="{{ asset("js/vendor.js") }}"></script>
-<script type="text/javascript" src="{{ asset("js/app.js") }}"></script>
-<link rel="stylesheet" href="{{ asset("css/app.css") }}">
+<script type="text/javascript" src="{{ vasset("js/app.js") }}"></script>
+<link rel="stylesheet" href="{{ vasset("css/app.css") }}">
 </body>
 </html>

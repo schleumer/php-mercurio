@@ -10,9 +10,8 @@ var $ = require('jquery');
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function DateTime($rootScope, $timeout) {
+module.exports = /*@ngInject*/ function DateTime($rootScope, $timeout) {
   return {
     restrict: 'E',
     require: '?^appForm',

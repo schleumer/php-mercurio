@@ -4,9 +4,8 @@ var R = require('ramda');
  * Factory resposável pelo loading, redirecionando os eventos para a directive de loading
  * @see {@link directives.loading}
  * @returns Function
- * @ngInject
  */
-module.exports = function Loading($rootScope, $q, Chaos) {
+module.exports = /*@ngInject*/ function Loading($rootScope, $q, Chaos) {
   var Loading = function () {
     this.start = () => {
       $rootScope.appLoadingClass = "app-loading";

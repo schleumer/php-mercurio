@@ -4,9 +4,8 @@ var $ = require('jquery')
 
 /**
  *
- * @ngInject
  */
-module.exports = function Numeric($rootScope, $timeout) {
+module.exports = /*@ngInject*/ function Numeric($rootScope, $timeout) {
   return {
     restrict: 'E',
     require: '?^appForm',

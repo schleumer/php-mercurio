@@ -5,9 +5,8 @@ var R = require('ramda');
  * Controller para manutenção de Usuarios
  * @module controllers
  * @type {*[]}
- * @ngInject
  */
-module.exports = function UsersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Users, Loading, Modals) {
+module.exports = /*@ngInject*/ function UsersController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Users, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

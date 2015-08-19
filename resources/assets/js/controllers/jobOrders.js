@@ -5,9 +5,8 @@ var R = require('ramda');
  * Controller de Ordem de Serviço
  * @module controllers
  * @type {*[]}
- * @ngInject
  */
-module.exports = function JobOrdersController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, JobOrders, Loading, Modals) {
+module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, JobOrders, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

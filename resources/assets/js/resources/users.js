@@ -2,9 +2,8 @@
  * Resource dos usuários
  * @param $resource
  * @returns {*}
- * @ngInject
  */
-module.exports = function Users($resource) {
+module.exports = /*@ngInject*/ function Users($resource) {
   return $resource('/users', null, {
     'update': {method: 'PUT'}
   });

@@ -7,9 +7,8 @@
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function Loading($rootScope) {
+module.exports = /*@ngInject*/ function Loading($rootScope) {
   return {
     restrict: 'E',
     replace: true,

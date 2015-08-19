@@ -7,9 +7,8 @@
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function PageToolbar($rootScope) {
+module.exports = /*@ngInject*/ function PageToolbar($rootScope) {
   return {
     restrict: 'E',
     transclude: true,
@@ -20,7 +19,7 @@ module.exports = function PageToolbar($rootScope) {
       withSearch: '=',
       onSearch: '&'
     },
-    link: (scope, element, attrs, ctrl) => {
+    link: function (scope, element, attrs, ctrl) {
       scope.search = { query: "" };
       scope.getClassForButton = (item) => {
         return `btn-${item.type}`;

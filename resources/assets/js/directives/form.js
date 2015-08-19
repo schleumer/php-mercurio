@@ -7,9 +7,8 @@
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function Form($rootScope) {
+module.exports = /*@ngInject*/ function Form($rootScope) {
   return {
     restrict: 'E',
     transclude: true,
@@ -21,8 +20,7 @@ module.exports = function Form($rootScope) {
     },
     link: (scope, element, attrs, ctrl) => {
     },
-    /* @ngAnnotate */
-    controller: function ($scope) {
+    controller: /*@ngInject*/ function ($scope) {
       this.getName = () => {
         return $scope.name;
       }

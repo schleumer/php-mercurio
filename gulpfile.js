@@ -3,7 +3,9 @@ var gulp = require('gulp')
   , gutil = require('gulp-util')
   , sourcemaps = require('gulp-sourcemaps')
   , transform = require('vinyl-transform')
-//, uglify = require('gulp-uglify')
+  , uglify = require('gulp-uglify')
+  , minifyCss = require('gulp-minify-css')
+  , rename = require('gulp-rename')
 //, jade = require('gulp-jade')
   , watch = require('gulp-watch')
   , watchify = require('watchify')
@@ -26,12 +28,12 @@ var gulp = require('gulp')
   , replace = require('gulp-replace')
 //, closureCompiler = require('gulp-closure-compiler')
   , R = require('ramda')
+  , git = require('git-rev')
+  , moment = require('moment')
   , requireGlobify = require('require-globify')
   , pack = require('./package.json')
   , $i18n = require('./helpers/i18nify')
-  , frontendDependencies = pack['frontendDependencies']
-  , git = require('git-rev')
-  , moment = require('moment');
+  , frontendDependencies = pack['frontendDependencies'];
 
 var gitHash = null;
 
@@ -135,6 +137,42 @@ gulp.task('browserify-app', function () {
   return bundle();
 });
 
+gulp.task('dist-browserify-app', function () {
+  var appBundleArgs = R.merge(watchify.args, {
+    entries: ['./resources/assets/js/app.js'],
+    paths: ['./resources/assets/js/'],
+    debug: false,
+    extensions: ['.html', '.js'],
+    poll: true
+  });
+
+  var appBundle = browserify(appBundleArgs)
+    .transform(babelify.configure({
+      ignore: /(node_modules)/,
+      // TODO: deixar o babel compativel com o ngannotate
+      blacklist: ["strict"]
+    }))
+    .transform(html)
+    .transform(ngannotate)
+    .transform(langify("pt"))
+    .transform(requireGlobify);
+
+  frontendDependencies.forEach(function (lib) {
+    appBundle.external(lib);
+  });
+
+  function bundle() {
+    return appBundle
+      .bundle()
+      .on('error', dontFailPlease)
+      .pipe(source('app.js'))
+      .pipe(replace(/\$app-version\$/g, getVersion))
+      .pipe(gulp.dest(pub('js')));
+  }
+
+  return bundle();
+});
+
 gulp.task('stylesheet', function () {
   return gulp.src(['./resources/assets/less/app.less'], {
     base: './resources/assets/less/'
@@ -168,6 +206,24 @@ gulp.task('stylesheet-watch', function () {
   });
 });
 
+gulp.task('minify-js', ['browserify-vendor', 'dist-browserify-app'], function() {
+  return gulp.src([pub('js/app.js'), pub('js/vendor.js')])
+    .pipe(uglify())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(pub('js')));
+});
+
+gulp.task('minify-css', ['stylesheet'], function() {
+  return gulp.src([pub('css/app.css')])
+    .pipe(minifyCss())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(pub('css')));
+});
+
 gulp.task('watch', [
   'browserify-vendor',
   'browserify-app',
@@ -175,4 +231,14 @@ gulp.task('watch', [
   'copy-images',
   'stylesheet',
   'stylesheet-watch'
+]);
+
+gulp.task('dist', [
+  'browserify-vendor',
+  'dist-browserify-app',
+  'copy-fonts',
+  'copy-images',
+  'stylesheet',
+  'minify-js',
+  'minify-css'
 ]);

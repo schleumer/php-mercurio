@@ -3,9 +3,8 @@ var $ = require('jquery');
 /**
  *
  * @param $rootScope
- * @ngInject
  */
-module.exports = function Text($rootScope) {
+module.exports = /*@ngInject*/ function Text($rootScope) {
   return {
     restrict: 'A',
     scope: {

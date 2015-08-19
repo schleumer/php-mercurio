@@ -8,9 +8,8 @@ var R = require("ramda");
  * @param Chaos
  * @param Auth
  * @constructor
- * @ngInject
  */
-module.exports = function AuthController($scope, $location, Loading, Chaos, Auth) {
+module.exports = /*@ngInject*/ function AuthController($scope, $location, Loading, Chaos, Auth) {
   $scope.form = {email: '', password: ''};
 
   Loading

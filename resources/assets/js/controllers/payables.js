@@ -4,9 +4,8 @@ var R = require('ramda');
 /**
  * Controller de Contas a Pagar
  * @module controller
- * @ngInject
  */
-module.exports = function PayablesController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, Payables, Loading, Modals) {
+module.exports = /*@ngInject*/ function PayablesController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, Payables, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

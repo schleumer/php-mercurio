@@ -8,9 +8,8 @@ var R = require("ramda");
  * @param Chaos
  * @param Auth
  * @constructor
- * @ngInject
  */
-module.exports = function LogoutController($scope, $location, Loading, Chaos, Auth) {
+module.exports = /*@ngInject*/ function LogoutController($scope, $location, Loading, Chaos, Auth) {
   Loading
     .follow(Auth.logout())
     .then(() => $location.path('/auth'));

@@ -5,9 +5,8 @@ var R = require('ramda');
 /**
  * Controller de Serviços
  * @module controllers
- * @ngInject
  */
-module.exports = function JobsController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Jobs, Loading, Modals) {
+module.exports = /*@ngInject*/ function JobsController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, Jobs, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

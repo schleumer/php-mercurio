@@ -5,9 +5,8 @@ var R = require('ramda');
 /**
  * Controller de Tipos de Pagamento
  * @module controllers
- * @ngInject
  */
-module.exports = function PayableTypesController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, PayableTypes, Loading, Modals) {
+module.exports = /*@ngInject*/ function PayableTypesController($scope, $rootScope, $q, $location, $routeParams, ngTableParams, PayableTypes, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

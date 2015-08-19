@@ -1,8 +1,10 @@
 var routes = require("../routes");
 var { routePrefix } = require('./index');
 
-/* @ngInject */
-module.exports = function run($rootScope, $templateCache, Auth, vendorVersion, appVersion) {
+/**
+ *
+ */
+module.exports = /*@ngInject*/ function run($rootScope, $templateCache, Auth, vendorVersion, appVersion) {
   $templateCache.put('custom/pager', require('templates/custom-pager.html'));
   $rootScope.vendorVersion = vendorVersion;
   $rootScope.appVersion = appVersion;
@@ -49,7 +51,7 @@ module.exports = function run($rootScope, $templateCache, Auth, vendorVersion, a
    * @param value
    * @returns {*}
    */
-  $rootScope.dot = function(obj, is, value) {
+  $rootScope.dot = function (obj, is, value) {
     if (!is) {
       return obj;
     } else {

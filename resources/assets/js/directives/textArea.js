@@ -7,9 +7,8 @@
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function Text($rootScope) {
+module.exports = /*@ngInject*/ function Text($rootScope) {
   return {
     restrict: 'E',
     require: '?^appForm',

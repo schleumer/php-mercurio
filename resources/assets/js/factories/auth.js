@@ -5,9 +5,8 @@
  * @param $localStorage
  * @param $q
  * @param Users
- * @ngInject
  */
-module.exports = function Auth($http, $localStorage, $q, $rootScope) {
+module.exports = /*@ngInject*/ function Auth($http, $localStorage, $q, $rootScope) {
   var Auth = function () {
     this.token = null;
     this.user = null;
@@ -51,10 +50,11 @@ module.exports = function Auth($http, $localStorage, $q, $rootScope) {
 
     this.isAuthenticated = function () {
       return this.user != null;
-    },
-      this.getUser = function () {
-        return this.user;
-      }
+    };
+
+    this.getUser = function () {
+      return this.user;
+    };
   };
 
   return new Auth();

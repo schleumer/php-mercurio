@@ -9,9 +9,8 @@ var { utils } = require('../helpers');
  *   template: *,
  *   link: Function
  * }}
- * @ngInject
  */
-module.exports = function ErrorBlock($rootScope) {
+module.exports = /*@ngInject*/ function ErrorBlock($rootScope) {
   return {
     restrict: 'E',
     replace: true,

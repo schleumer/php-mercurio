@@ -7,9 +7,8 @@ var R = require('ramda');
  * @param $rootScope
  * @param $parse
  * @returns {{replace: boolean, transclude: string, restrict: string, scope: {label: string, items: string, itemModel: string, filter: string, itemKey: string, itemTemplate: string, maxItems: string, full: string}, templateUrl: string, link: Function}}
- * @ngInject
  */
-module.exports = function ($filter, $rootScope, $parse) {
+module.exports = /*@ngInject*/ function ($filter, $rootScope, $parse) {
   return {
     replace: true,
     transclude: 'true',

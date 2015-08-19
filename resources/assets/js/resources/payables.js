@@ -2,9 +2,8 @@
  * Resource dos serviços
  * @param $resource
  * @returns {*}
- * @ngInject
  */
-module.exports = function Payables($resource) {
+module.exports = /*@ngInject*/ function Payables($resource) {
   return $resource('/payables/:id', null, {
     'update': {method: 'PUT'}
   });

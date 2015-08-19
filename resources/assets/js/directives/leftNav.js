@@ -1,9 +1,8 @@
 /**
  * Directive para a barra de navegação esquerda
  * @returns {{restrict: string, replace: boolean, template: *, link: Function}}
- * @ngInject
  */
-module.exports = function LeftNav($rootScope, $location) {
+module.exports = /*@ngInject*/ function LeftNav($rootScope, $location) {
   return {
     restrict: 'E',
     replace: true,

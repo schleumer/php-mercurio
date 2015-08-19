@@ -5,10 +5,9 @@ var R = require('ramda');
  * Controller de Contas a Receber
  * @module controllers
  * @type {*[]}
- * @ngInject
  */
 
-module.exports = function ReceivablesController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, Receivables, Loading, Modals) {
+module.exports = /*@ngInject*/ function ReceivablesController($scope, $rootScope, $q, $location, $routeParams, $http, ngTableParams, Receivables, Loading, Modals) {
   $scope.form = {};
 
   $scope.toolbarItems = [

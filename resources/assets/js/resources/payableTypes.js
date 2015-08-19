@@ -1,10 +1,9 @@
 /**
- * Resource dos usu�rios
+ * Resource dos usuários
  * @param $resource
  * @returns {*}
- * @ngInject
  */
-module.exports = function PayableTypes($resource) {
+module.exports = /*@ngInject*/ function PayableTypes($resource) {
   return $resource('/payable-types/:id', null, {
     'update': {method: 'PUT'}
   });
