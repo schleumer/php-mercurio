@@ -11,8 +11,16 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description')->nullable();;
+            $table->text('description')->nullable();
             $table->decimal('price', 20, 2)->nullable();
+
+            $table->integer('company_id')
+                ->unsigned()
+                ->nullable()
+                ->default(null);
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies');
 
             $table->timestamps();
 

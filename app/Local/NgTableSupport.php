@@ -17,7 +17,7 @@ trait NgTableSupport
      * @param array $sortFields
      * @return NgTableSupport
      */
-    public static function ngTable(Request $request, \Closure $custom = null, $searchFields = [], $sortFields = [])
+    public function scopeNgTable($query, Request $request, \Closure $custom = null, $searchFields = [], $sortFields = [])
     {
         $limit = (int)$request->get('count', 10);
         $page = (int)$request->get('page', 1);
@@ -34,8 +34,6 @@ trait NgTableSupport
         }
 
         $aloneSearch = $request->get('q', null);
-
-        $query = static::select();
 
         $query->where(function($clause) use ($filters, $aloneSearch, $searchFields) {
             foreach($filters as $field => $filter) {

@@ -17,5 +17,7 @@ module.exports = {
   logout: require('./logout'),
   reports: require('./reports'),
   users: require('./users'),
-  payableTypes: require('./payableTypes')
+  payableTypes: require('./payableTypes'),
+  company: require('./company'),
+  contact: require('./contact')
 };

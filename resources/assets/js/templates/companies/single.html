@@ -1,0 +1,86 @@
+<app-page>
+    <app-page-header icon="city-alt">{{ str("company-header") }}</app-page-header>
+    <app-page-container>
+        <app-form name="company">
+            <div class="row">
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="name"
+                              label="customer-name"
+                              ng-model="form.name"></app-text>
+                </div>
+
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="email"
+                              label="customer-email"
+                              ng-model="form.email"></app-text>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="cnpj"
+                              label="customer-cnpj"
+                              ng-model="form.cnpj"></app-text>
+                </div>
+
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="ie"
+                              label="customer-ie"
+                              ng-model="form.ie"></app-text>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="address"
+                              label="customer-address"
+                              ng-model="form.address"></app-text>
+                </div>
+
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="number"
+                              label="customer-number"
+                              ng-model="form.number"></app-text>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="district"
+                              label="customer-district"
+                              ng-model="form.district"></app-text>
+                </div>
+
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="city"
+                              label="customer-city"
+                              ng-model="form.city"></app-text>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="zip"
+                              label="customer-zip"
+                              ng-model="form.zip"></app-text>
+                </div>
+
+                <div class="col-xs-6">
+                    <app-text type="text"
+                              name="contact"
+                              label="customer-contact"
+                              ng-model="form.contact"></app-text>
+                </div>
+            </div>
+        </app-form>
+    </app-page-container>
+</app-page>

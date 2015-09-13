@@ -19,9 +19,18 @@ class CreatePayablesTable extends Migration
             $table->integer('payable_type_id')
                 ->unsigned()
                 ->nullable();
+
             $table->foreign('payable_type_id')
                 ->references('id')
                 ->on('payable_types');
+
+            $table->integer('company_id')
+                ->unsigned()
+                ->nullable()
+                ->default(null);
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies');
 
             $table->dateTime('date')
                 ->nullable();

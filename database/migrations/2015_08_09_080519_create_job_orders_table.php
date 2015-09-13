@@ -15,8 +15,17 @@ class CreateJobOrdersTable extends Migration
             $table->tinyInteger('status')
                 ->nullable();
 
+            $table->integer('company_id')
+                ->unsigned()
+                ->nullable()
+                ->default(null);
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies');
+
             $table->timestamps();
             $table->softDeletes();
+
 
             $table->foreign('customer_id')->references('id')->on('customers');
         });

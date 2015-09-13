@@ -87,7 +87,7 @@ class ReceivablesController extends Controller
 
     public function index(Request $request)
     {
-        return Receivable::ngTable($request, function ($query, $params) {
+        return Receivable::throughCompany()->ngTable($request, function ($query, $params) {
             return $query
                 ->leftJoin('customers', 'customers.id', '=', 'receivables.customer_id')
                 ->orderBy('receivables.status', 'asc')

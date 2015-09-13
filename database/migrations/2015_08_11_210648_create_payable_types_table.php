@@ -13,6 +13,15 @@ class CreatePayableTypesTable extends Migration
             $table->string('name');
             $table->text('description')
                 ->nullable();
+
+            $table->integer('company_id')
+                ->unsigned()
+                ->nullable()
+                ->default(null);
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies');
+
             $table->timestamps();
             $table->softDeletes();
         });

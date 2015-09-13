@@ -75,7 +75,7 @@ class PayablesController extends Controller
 
     public function index(Request $request)
     {
-        return Payable::ngTable($request, function ($query, $params) {
+        return Payable::throughCompany()->ngTable($request, function ($query, $params) {
             return $query
                 ->leftJoin('payable_types', 'payable_types.id', '=', 'payables.payable_type_id')
                 ->orderBy('payables.status', 'desc')

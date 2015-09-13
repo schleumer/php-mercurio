@@ -2,15 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Local\CompanyModel;
 use App\Local\NgTableSupport;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class JobOrder extends Model
+class JobOrder extends CompanyModel
 {
     use NgTableSupport, SoftDeletes;
 
@@ -22,7 +18,8 @@ class JobOrder extends Model
 
     protected $fillable = [
         'note',
-        'customer_id'
+        'customer_id',
+        'company_id'
     ];
 
     protected $hidden = [];
@@ -36,5 +33,10 @@ class JobOrder extends Model
     public function jobs() {
         // TODO: ver por que é preciso declarar a tabela e por que não esta funcionando automaticamente
         return $this->belongsToMany(Job::class, 'job_order_jobs')->withPivot('price');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }

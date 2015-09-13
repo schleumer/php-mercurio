@@ -16,5 +16,7 @@ module.exports =  {
     "reports": "Relatórios",
     "reports-desc": `descrição`,
     "payable-types": "Tipos de Pagamento",
-    "payable-types-desc": `descrição`
+    "payable-types-desc": `descrição`,
+    "company": `Empresa`,
+    "company-desc": `descrição`
 };

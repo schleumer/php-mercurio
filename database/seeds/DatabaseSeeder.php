@@ -9,9 +9,10 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 
-function array_pick_index($array, array $indices){
+function array_pick_index($array, array $indices)
+{
     $aux = [];
-    foreach($indices as $index) {
+    foreach ($indices as $index) {
         $aux[] = $array[$index];
     }
     return $aux;
@@ -37,30 +38,18 @@ class DatabaseSeeder extends Seeder
         DB::table('customer_phones')->delete();
         DB::table('customers')->delete();
         DB::table('users')->delete();
+        DB::table('companies')->delete();
 
 
+        $companies = [];
 
-        User::create(['name' => 'Teste', 'email' => 'teste@teste.com.br', 'password' => Hash::make('teste')]);
-
-        $jobs = [];
-
-        foreach(range(0, 15) as $x) {
-            $jobs[] = Job::create([
-                'name' => "Serviço de teste $x",
-                'price' => $x * 100,
-                'description' => "Serviço de teste $x"
-            ]);
-        }
-
-        $customers = [];
-
-        foreach(range(0, 15) as $x) {
-            $customer = Customer::create([
-                'name' => "Cliente $x",
-                'email' => "cliente$x@teste.com.br",
+        foreach (range(0, 2) as $x) {
+            $companies[] = \App\Models\Company::create([
+                'name' => "Empresa $x",
+                'email' => "empresa$x@teste.com.br",
                 'cnpj' => '81.748.407/0001-01',
                 'ie' => '309.639.790.252',
-                'address' => "Endereço de Teste $x",
+                'address' => "Endereço da Empresa $x",
                 'number' => $x,
                 'district' => "Bairro de Teste $x",
                 'city' => "Cidade de Teste $x",
@@ -68,52 +57,110 @@ class DatabaseSeeder extends Seeder
                 'zip' => '00000-0' . str_pad($x, 2, '0', STR_PAD_LEFT),
                 'contact' => "Pessoa de Teste $x"
             ]);
+        }
 
-            foreach(range(0, rand(1, 5)) as $y) {
-                $customer->phones()->create(['phone' => "1398765432$y"]);
+
+        $cid = 0;
+        foreach ($companies as $company) {
+            $cid += 1;
+
+            User::create(['name' => 'Teste', 'email' => "teste{$cid}@teste.com.br", 'password' => Hash::make('teste')])
+                ->company()
+                ->associate($company)
+                ->save();
+
+            $jobs = [];
+
+            foreach (range(0, 15) as $x) {
+                $job = Job::create([
+                    'name' => "Serviço de teste $cid/$x",
+                    'price' => $x * 100,
+                    'description' => "Serviço de teste $x"
+                ])->company()
+                    ->associate($company);
+
+                $job->save();
+
+                $jobs[] = $job;
             }
 
-            $testJobs = array_pick_index($jobs, array_rand($jobs, 5));
+            $customers = [];
 
-            $customerJobOrder = JobOrder::create([
-                'customer_id' => $customer->id,
-                'note' => "Nota de teste para o cliente $x"
-            ]);
+            foreach (range(0, 15) as $x) {
+                $customer = Customer::create([
+                    'name' => "Cliente $cid/$x",
+                    'email' => "cliente$x@teste.com.br",
+                    'cnpj' => '81.748.407/0001-01',
+                    'ie' => '309.639.790.252',
+                    'address' => "Endereço de Teste $x",
+                    'number' => $x,
+                    'district' => "Bairro de Teste $x",
+                    'city' => "Cidade de Teste $x",
+                    'state' => "Teste",
+                    'zip' => '00000-0' . str_pad($x, 2, '0', STR_PAD_LEFT),
+                    'contact' => "Pessoa de Teste $x"
+                ])->company()
+                    ->associate($company);
 
-            $testJobs = array_map(function($item) { return [
-                'job_id' => $item->id,
-                'price' => $item->price
-            ]; }, $testJobs);
+                $customer->save();
 
-            $customerJobOrder->jobs()->sync($testJobs);
+                foreach (range(0, rand(1, 5)) as $y) {
+                    $customer->phones()->create(['phone' => "1398765432$y"]);
+                }
 
-            $customerJobOrder->save();
+                $testJobs = array_pick_index($jobs, array_rand($jobs, 5));
 
-            $customers[] = $customer;
-        }
+                $customerJobOrder = JobOrder::create([
+                    'customer_id' => $customer->id,
+                    'note' => "Nota de teste para o cliente $cid/$x"
+                ])->company()
+                    ->associate($company);
 
-        $payableTypes = [];
+                $customerJobOrder->save();
 
-        foreach(range(0, 15) as $i) {
-            $payableTypes[] = PayableType::create(['name' => "Conta de Teste $i", 'description' => "Descrição do tipo $i"]);
-        }
+                $testJobs = array_map(function ($item) {
+                    return [
+                        'job_id' => $item->id,
+                        'price' => $item->price
+                    ];
+                }, $testJobs);
 
-        $payables = [];
+                $customerJobOrder->jobs()->sync($testJobs);
 
-        foreach($customers as $customer) {
-            foreach(range(0, rand(1, 5)) as $x) {
-                $type = current(array_pick_index($payableTypes, array_rand($payableTypes, 5)));
-                $payable = \App\Models\Payable::create([
-                    'payable_type_id' => $type->id,
-                    'date' => \Carbon\Carbon::now()->addDays(rand(1, 60)),
-                    'status' => rand(1, 2),
-                    'price' => $x * 100,
-                    'description' => "Descrição de uma conta a pagar {$customer->id}/$x"
-                ]);
+                $customerJobOrder->save();
 
-                $payable->save();
+                $customers[] = $customer;
+            }
 
-                $payables[] = $payable;
+            $payableTypes = [];
+
+            foreach (range(0, 15) as $i) {
+                $payableType = PayableType::create(['name' => "Conta de Teste $cid/$i", 'description' => "Descrição do tipo $i"])->company()
+                    ->associate($company);
+
+                $payableType->save();
+
+                $payableTypes[] = $payableType;
+            }
+
+            $payables = [];
+
+            foreach ($customers as $customer) {
+                foreach (range(0, rand(1, 5)) as $x) {
+                    $type = current(array_pick_index($payableTypes, array_rand($payableTypes, 5)));
+                    $payable = \App\Models\Payable::create([
+                        'payable_type_id' => $type->id,
+                        'date' => \Carbon\Carbon::now()->addDays(rand(1, 60)),
+                        'status' => rand(1, 2),
+                        'price' => $x * 100,
+                        'description' => "Descrição de uma conta a pagar {$customer->id}/$x"
+                    ])->company()
+                        ->associate($company);
+
+                    $payable->save();
+
+                    $payables[] = $payable;
+                }
             }
         }
 

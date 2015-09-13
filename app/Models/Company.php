@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
-use App\Local\CompanyModel;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Local\NgTableSupport;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends CompanyModel
+class Company extends Model
 {
     use NgTableSupport, SoftDeletes;
 
-    protected $table = 'customers';
+    protected $table = 'companies';
 
     protected $fillable = [
         'name',
@@ -23,20 +27,10 @@ class Customer extends CompanyModel
         'city',
         'state',
         'zip',
-        'contact',
-        'company_id'
+        'contact'
     ];
 
     protected $hidden = [];
 
     protected $dates = ['deleted_at'];
-
-    public function phones() {
-        return $this->hasMany(CustomerPhone::class);
-    }
-
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
 }

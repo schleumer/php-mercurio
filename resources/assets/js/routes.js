@@ -9,6 +9,9 @@ module.exports = [
   route(C.home, '/', require('templates/index.html'), 'HomeController',
     meta('home', i18n.all('home', 'home-desc'))),
 
+  route(C.company, '/company', require('templates/companies/single.html'), 'CompanyControler',
+    meta('city-alt', i18n.all('company', 'company-desc'))),
+
   route(C.customers, '/customers', require('templates/customers/index.html'), 'CustomersController',
     meta('accounts', i18n.all('customers', 'customers-desc'))),
   route(C.customers, '/customers/new', require('templates/customers/form.html'), 'CustomersController'),
@@ -46,6 +49,7 @@ module.exports = [
     meta('accounts', i18n.all('users', 'users-desc'))),
 
   freeRoute(C.auth, '/auth', require('templates/auth.html'), 'AuthController'),
+  freeRoute(C.contact, '/contact', require('templates/contact.html'), 'ContactController'),
 
   freeRoute(C.logout, '/logout', null, 'LogoutController')
 ];

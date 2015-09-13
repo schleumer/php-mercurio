@@ -3,6 +3,7 @@
 return [
     'name' => 'Mercúrio Ordens de Serviço',
     'short_name' => 'Mercúrio',
+    'brand' => 'Mercúrio - Sistema online de gestão empresarial',
 
     /*
     |--------------------------------------------------------------------------

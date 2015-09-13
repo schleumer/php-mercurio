@@ -55,6 +55,6 @@ class CustomersController extends Controller
     }
 
     public function index(Request $request) {
-        return Customer::ngTable($request, null, ['id', 'name', 'cnpj'], ['name', 'id', 'created_at']);
+        return Customer::throughCompany()->ngTable($request, null, ['id', 'name', 'cnpj'], ['name', 'id', 'created_at']);
     }
 }

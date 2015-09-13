@@ -59,6 +59,6 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        return User::ngTable($request, null, ['id', 'name'], ['id', 'name']);
+        return User::throughCompany()->ngTable($request, null, ['id', 'name'], ['id', 'name']);
     }
 }

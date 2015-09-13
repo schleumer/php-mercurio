@@ -14,6 +14,14 @@ class CreateReceivablesTable extends Migration
             $table->dateTime('paid_at')->nullable();
             $table->text('note')->nullable();
 
+            $table->integer('company_id')
+                ->unsigned()
+                ->nullable()
+                ->default(null);
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies');
+
             $table->tinyInteger('status')
                 ->nullable();
 

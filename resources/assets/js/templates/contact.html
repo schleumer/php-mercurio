@@ -1,0 +1,59 @@
+<app-page ng-init="init()">
+    <app-page-header icon="email">{{ str("contact-header") }}</app-page-header>
+    <app-page-container>
+        <app-form name="contact">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <app-text type="text"
+                                      name="name"
+                                      label="contact-name"
+                                      ng-model="form.name"></app-text>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <app-text type="text"
+                                      name="email"
+                                      label="contact-email"
+                                      ng-model="form.phone"></app-text>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <app-text type="text"
+                                      name="phone"
+                                      label="contact-phone"
+                                      ng-model="form.phone"></app-text>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <app-text-area type="text"
+                                           name="message"
+                                           label="contact-message"
+                                           ng-model="form.message"
+                                           lines="5"></app-text-area>
+                        </div>
+                    </div>
+                    <!-- TODO: directive -->
+                    <div class="row app-form-footer">
+                        <div class="col-xs-12">
+                            <a class="btn btn-primary pull-right" ng-click="save()" style="margin-left: 10px">Enviar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <b>Skype:</b> KAD System <br/>
+                            <b>ICQ:</b> 10318277 <br/>
+                            <b>Telefone:</b> +55 (13) 99705-1010 <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-form>
+    </app-page-container>
+</app-page>

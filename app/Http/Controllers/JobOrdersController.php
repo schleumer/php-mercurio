@@ -97,7 +97,7 @@ class JobOrdersController extends Controller
 
     public function index(Request $request)
     {
-        return JobOrder::ngTable($request, function ($query, $params) {
+        return JobOrder::throughCompany()->ngTable($request, function ($query, $params) {
             return $query
                 ->leftJoin('customers', 'customers.id', '=', 'job_orders.customer_id')
                 ->leftJoin('job_order_jobs', 'job_order_jobs.job_order_id', '=', 'job_orders.id', 'outer')

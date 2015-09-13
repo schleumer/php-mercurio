@@ -62,6 +62,6 @@ class JobsController extends Controller
 
     public function index(Request $request)
     {
-        return Job::ngTable($request, null, ['id', 'name'], ['id', 'name']);
+        return Job::throughCompany()->ngTable($request, null, ['id', 'name'], ['id', 'name']);
     }
 }

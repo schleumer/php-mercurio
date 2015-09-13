@@ -33,6 +33,14 @@ class CreateCustomersTable extends Migration
 
             $table->string('contact')->nullable();
 
+            $table->integer('company_id')
+                ->unsigned()
+                ->nullable()
+                ->default(null);
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies');
+
             $table->timestamps();
 
             $table->softDeletes();

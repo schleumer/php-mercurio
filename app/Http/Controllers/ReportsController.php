@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ReportsController extends Controller {
     public function getCustomers(Request $request) {
         return view("reports/customers", [
-            "customers" => Customer::with("phones")->get()
+            "customers" => Customer::throughCompany()->with("phones")->get()
         ])->with('size', 'full');
     }
 }

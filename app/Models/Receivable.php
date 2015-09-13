@@ -2,15 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Local\CompanyModel;
 use App\Local\NgTableSupport;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Receivable extends Model
+class Receivable extends CompanyModel
 {
     use NgTableSupport, SoftDeletes;
 
@@ -23,7 +19,8 @@ class Receivable extends Model
         'note',
         'price',
         'customer_id',
-        'status'
+        'status',
+        'company_id'
     ];
 
     protected $hidden = [];
@@ -37,5 +34,10 @@ class Receivable extends Model
     public function installments() {
         // TODO: ver por que é preciso declarar a tabela e por que não esta funcionando automaticamente
         return $this->hasMany(ReceivableInstallment::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }

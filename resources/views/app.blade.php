@@ -64,22 +64,37 @@
             animation-delay: -1.0s;
         }
 
-        @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
-        @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+        @-webkit-keyframes sk-rotate {
+            100% {
+                -webkit-transform: rotate(360deg)
+            }
+        }
+
+        @keyframes sk-rotate {
+            100% {
+                transform: rotate(360deg);
+                -webkit-transform: rotate(360deg)
+            }
+        }
 
         @-webkit-keyframes sk-bounce {
-            0%, 100% { -webkit-transform: scale(0.0) }
-            50% { -webkit-transform: scale(1.0) }
+            0%, 100% {
+                -webkit-transform: scale(0.0)
+            }
+            50% {
+                -webkit-transform: scale(1.0)
+            }
         }
 
         @keyframes sk-bounce {
             0%, 100% {
                 transform: scale(0.0);
                 -webkit-transform: scale(0.0);
-            } 50% {
-                  transform: scale(1.0);
-                  -webkit-transform: scale(1.0);
-              }
+            }
+            50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
         }
 
         #app {
@@ -110,24 +125,28 @@
 
     <div class="container" id="app" ng-class="appLoadingClass">
         <div class="ui-blocker"></div>
-        <div class="essa-div-nao-e-uma-gambiarra" ng-show="!isUserPresent()"></div>
+        {{--<div class="essa-div-nao-e-uma-gambiarra" ng-show="!isUserPresent()"></div>--}}
         <nav class="navbar navbar-inverse" id="app-navbar" ng-class="getAppBarNavClass()">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-4" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-4" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="images/logo.png" />
-                        <span class="pull-left">{{ config('app.short_name') }}</span>
+                    <a class="navbar-brand" href="#/">
+                        <img src="images/logo.png"/>
+                        <span class="pull-left">{{ config('app.brand') }}</span>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-4">
-                    <p class="navbar-text" ng-bind="user.name"></p>
-                 </div>
+                    <p class="navbar-text" ng-if="user">
+                        <span ng-bind="user.name"></span> / <a href="#/company" class="navbar-link"
+                                                               ng-bind="user.company.name"></a>
+                    </p>
+                </div>
             </div>
         </nav>
         <div class="container-fluid" id="app-container-holder">
@@ -140,7 +159,27 @@
         </div>
     </div>
     <div class="container">
-        <footer style="color: #ddd;text-align: right">app: <span ng-bind="appVersion"></span> ~ vendor: <span ng-bind="vendorVersion"></span></footer>
+        <footer>
+            <div class="pull-left">
+                © 2014 - {{ date('Y') }} <a href="http://www.kadsystem.com.br/" target="_blank">KAD System</a> - Todos os direitos reservados
+            </div>
+            <div style="color: #ddd;text-align: right" class="pull-right">
+                app: <span ng-bind="appVersion"></span> ~ vendor: <span
+                        ng-bind="vendorVersion"></span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- @todo FIX THAT INLINE CSS PLS -->
+    <div style="position: fixed; background-color: #26b51f; height: 28px; bottom: 0; right: 20px; z-index: 9999999; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <a href="#/contact" target="_blank">
+            <div class="pull-left" style="border-top-left-radius: 8px; padding: 5px; background-color: #1f9819;">
+                <i class="zmdi zmdi-email" style="color:white; font-size: 20px;"></i>
+            </div>
+            <div class="pull-left" style="color:white; font-size: 16px; padding: 0 10px;">
+                Entre em contato
+            </div>
+        </a>
     </div>
 </div>
 

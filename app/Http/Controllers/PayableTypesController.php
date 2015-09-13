@@ -51,6 +51,6 @@ class PayableTypesController extends Controller
 
     public function index(Request $request)
     {
-        return PayableType::ngTable($request, null, ['id', 'name'], ['id', 'name']);
+        return PayableType::throughCompany()->ngTable($request, null, ['id', 'name'], ['id', 'name']);
     }
 }

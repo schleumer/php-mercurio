@@ -2,15 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Local\CompanyModel;
 use App\Local\NgTableSupport;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PayableType extends Model
+class PayableType extends CompanyModel
 {
     use NgTableSupport, SoftDeletes;
 
@@ -18,10 +14,16 @@ class PayableType extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'company_id'
     ];
 
     protected $hidden = [];
 
     protected $dates = ['deleted_at'];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }
