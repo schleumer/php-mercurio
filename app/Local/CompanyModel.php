@@ -9,6 +9,8 @@ use Illuminate\Database\Query\Builder;
 
 class CompanyModel extends Model {
     public static function boot() {
+        parent::boot();
+        
         static::creating(function ($self) {
             if(\Auth::check()) {
                 $self->company_id = \Auth::user()->company_id;
