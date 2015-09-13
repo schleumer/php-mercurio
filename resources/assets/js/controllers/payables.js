@@ -41,7 +41,7 @@ module.exports = /*@ngInject*/ function PayablesController($scope, $rootScope, $
         } else {
           $location.path('/payables');
         }
-      });
+      }).catch(ex => $location.path('/payables'));
   }
 
   $scope.search = (search) => {
@@ -78,7 +78,7 @@ module.exports = /*@ngInject*/ function PayablesController($scope, $rootScope, $
 
 
   $scope.getStatusClass = (status) => {
-    switch(status) {
+    switch (status) {
       case 1:
         return "btn-success";
         break;
@@ -93,7 +93,7 @@ module.exports = /*@ngInject*/ function PayablesController($scope, $rootScope, $
 
 
   $scope.getStatusName = (status) => {
-    switch(status) {
+    switch (status) {
       case 1:
         return "Ok";
         break;
@@ -107,7 +107,7 @@ module.exports = /*@ngInject*/ function PayablesController($scope, $rootScope, $
   };
 
   $scope.setStatus = (item, status) => {
-    Loading.followP($http.post(`payables/set-status/${item.id}`, { status })).then(_ => item.status = status);
+    Loading.followP($http.post(`payables/set-status/${item.id}`, {status})).then(_ => item.status = status);
   }
 
 };

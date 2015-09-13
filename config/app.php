@@ -149,6 +149,8 @@ return [
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        App\Providers\AuthProvider::class
+
     ],
 
     /*

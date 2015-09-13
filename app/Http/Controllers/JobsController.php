@@ -41,14 +41,25 @@ class JobsController extends Controller
 
     public function show(Request $request, $id)
     {
-        return (new ApiParcel(Job::find($id)));
+        $job = Job::throughCompany()->find($id);
+
+        if (!$job) {
+            abort(404);
+        }
+
+        return new ApiParcel($job);
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, $this->rules);
         $data = $request->all();
-        $job = Job::find($id);
+        $job = Job::throughCompany()->find($id);
+
+        if (!$job) {
+            abort(404);
+        }
+
         $job->update($data);
 
         return (new ApiParcel())->addMessage('general', 'Serviço alterado com sucesso!');
@@ -56,7 +67,14 @@ class JobsController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        Job::find($id)->delete();
+        $job = Job::throughCompany()->find($id);
+
+        if (!$job) {
+            abort(404);
+        }
+
+        $job->delete();
+
         return (new ApiParcel())->addMessage('general', 'Serviço removido com sucesso!');
     }
 

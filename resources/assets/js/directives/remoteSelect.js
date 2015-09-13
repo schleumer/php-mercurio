@@ -48,6 +48,15 @@ module.exports = /*@ngInject*/ function RemoteSelect($rootScope, $http, $timeout
           return obj.id;
         },
         remote: {
+          prepare: (query, settings) => {
+            console.log(scope.ngModel, query, settings);
+            settings.url = (settings.url.replace('%QUERY', query));
+
+            if(scope.ngModel) {
+              settings.url += `&always=${scope.ngModel.id}`;
+            }
+            return settings;
+          },
           url: `${scope.url}?q=%QUERY`,
           wildcard: '%QUERY',
           transform: function (res) {
@@ -232,6 +241,7 @@ module.exports = /*@ngInject*/ function RemoteSelect($rootScope, $http, $timeout
         }
 
         scope.ui.currentSelectedIndex = -1;
+        search("");
       });
     }
   }

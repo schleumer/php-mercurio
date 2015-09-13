@@ -41,7 +41,7 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
         } else {
           $location.path('/job-orders');
         }
-      });
+      }).catch(ex => $location.path('/job-orders'));
   }
 
   $scope.search = (search) => {
@@ -94,7 +94,7 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
   };
 
   $scope.getStatusClass = (status) => {
-    switch(status) {
+    switch (status) {
       case 1:
         return "btn-success";
         break;
@@ -109,7 +109,7 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
 
 
   $scope.getStatusName = (status) => {
-    switch(status) {
+    switch (status) {
       case 1:
         return "Ok";
         break;
@@ -123,7 +123,7 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
   };
 
   $scope.setStatus = (item, status) => {
-    Loading.followP($http.post(`job-orders/set-status/${item.id}`, { status })).then(_ => item.status = status);
+    Loading.followP($http.post(`job-orders/set-status/${item.id}`, {status})).then(_ => item.status = status);
   }
 
 

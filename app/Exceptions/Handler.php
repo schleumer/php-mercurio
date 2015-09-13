@@ -30,13 +30,13 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $e
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
-        if($request->isJson()) {
+        if ($request->isJson()) {
             if ($e instanceof ApiParcelException) {
                 return (new ApiParcel())->addParcelException($e);
             } else {

@@ -30,14 +30,25 @@ class PayableTypesController extends Controller
 
     public function show(Request $request, $id)
     {
-        return (new ApiParcel(PayableType::find($id)));
+        $payableType = PayableType::throughCompany()->find($id);
+
+        if (!$payableType) {
+            abort(404);
+        }
+
+        return (new ApiParcel($payableType));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, $this->rules);
         $data = $request->all();
-        $payableType = PayableType::find($id);
+        $payableType = PayableType::throughCompany()->find($id);
+
+        if (!$payableType) {
+            abort(404);
+        }
+
         $payableType->update($data);
 
         return (new ApiParcel())->addMessage('general', 'Serviço alterado com sucesso!');
@@ -45,7 +56,13 @@ class PayableTypesController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        PayableType::find($id)->delete();
+        $payableType = PayableType::throughCompany()->find($id);
+
+        if (!$payableType) {
+            abort(404);
+        }
+
+        $payableType->delete();
         return (new ApiParcel())->addMessage('general', 'Serviço removido com sucesso!');
     }
 

@@ -30,12 +30,13 @@ class PayablesController extends Controller
 
             $data = $request->all();
 
-
             $payable = Payable::create($data);
 
-            $type = PayableType::find($data['payable_type']['id']);
+            $type = PayableType::throughCompany()->find($data['payable_type']['id']);
 
-            $payable->payableType()->associate($type);
+            if ($type) {
+                $payable->payableType()->associate($type);
+            }
 
             $payable->save();
 
@@ -50,18 +51,33 @@ class PayablesController extends Controller
 
     public function show(Request $request, $id)
     {
-        return (new ApiParcel(Payable::with("payableType")->find($id)));
+        $payable = Payable::throughCompany()->with("payableType")->find($id);
+
+        if (!$payable) {
+            abort(404);
+        }
+
+        return new ApiParcel($payable);
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, $this->rules);
         $data = $request->all();
-        $payable = Payable::find($id);
+        $payable = Payable::throughCompany()->find($id);
+
+        if (!$payable) {
+            abort(404);
+        }
+
         $payable->update($data);
 
-        $type = PayableType::find($data['payable_type']['id']);
-        $payable->payableType()->associate($type);
+        $type = PayableType::throughCompany()->find($data['payable_type']['id']);
+
+        if ($type) {
+            $payable->payableType()->associate($type);
+        }
+
         $payable->save();
 
         return (new ApiParcel())->addMessage('general', 'Serviço alterado com sucesso!');
@@ -69,7 +85,14 @@ class PayablesController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        Payable::find($id)->delete();
+        $payable = Payable::throughCompany()->find($id);
+
+        if (!$payable) {
+            abort(404);
+        }
+
+        $payable->delete();
+
         return (new ApiParcel())->addMessage('general', 'Serviço removido com sucesso!');
     }
 
@@ -84,8 +107,14 @@ class PayablesController extends Controller
             ['payables.id', 'payables.date']);
     }
 
-    public function postSetStatus(Request $request, $id) {
-        $payable = Payable::find($id);
+    public function postSetStatus(Request $request, $id)
+    {
+        $payable = Payable::throughCompany()->find($id);
+
+        if (!$payable) {
+            abort(404);
+        }
+
         $payable->status = $request->input('status') ?: Payable::STATUS_PENDING;
         $payable->save();
 

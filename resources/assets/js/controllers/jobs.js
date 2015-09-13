@@ -42,7 +42,7 @@ module.exports = /*@ngInject*/ function JobsController($scope, $rootScope, $q, $
         } else {
           $location.path('/jobs');
         }
-      });
+      }).catch(ex => $location.path('/jobs'));
   }
 
   $scope.search = (search) => {

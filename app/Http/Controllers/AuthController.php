@@ -17,14 +17,14 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         if (Auth::attempt($request->all())) {
-            return Auth::user()->with('company')->first();
+            return Auth::user();
         } else {
             throw $this->generalException("Usuário ou senha inválidos");
         }
     }
 
     public function getLogin(Request $request) {
-        return !Auth::check() ? null : Auth::user()->with('company')->first();
+        return !Auth::check() ? null : Auth::user();
     }
 
     public function deleteLogin(Request $request) {

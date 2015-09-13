@@ -19,10 +19,11 @@ module.exports = /*@ngInject*/ function ChaosFactory($rootScope, $q) {
           response.errors.filter(m => m.field == "general").forEach(m => {
             toastr.error(m.message);
           });
+          $rootScope.$broadcast("chaos.parcel", ex.data.errors);
         } else if (ex.status == 404) {
           toastr.error("Uma requisição invalida foi enviada ao servidor.");
         }
-        $rootScope.$broadcast("chaos.parcel", ex.data.errors);
+
         return $q.reject(ex);
       }).then((response) => {
         $rootScope.$broadcast("chaos.parcel", []);

@@ -27,55 +27,55 @@ module.exports = /*@ngInject*/ function PayableTypesController($scope, $rootScop
       Loading.follow($defer.promise);
       PayableTypes.get(params.url(), (result) => {
         params.total(result.parcel.total);
-      $defer.resolve(result.parcel.result);
-    });
-}
-});
+        $defer.resolve(result.parcel.result);
+      });
+    }
+  });
 
-var payableType = null;
+  var payableType = null;
 
-if ($routeParams.id) {
-  Loading.followR(PayableTypes.get({id: $routeParams.id}))
-    .then((payableType) => {
-    if (payableType.parcel) {
-    $scope.form = payableType.parcel;
-  } else {
-    $location.path('/payable-types');
-  }
-});
-}
-
-$scope.search = (search) => {
-  $scope.tableParams.filter({id: search.query, name: search.query});
-};
-
-$scope.save = () => {
-  var request = null;
-  if ($scope.form.id) {
-    request = Loading.followR(PayableTypes.update({id: $scope.form.id}, $scope.form))
-  } else {
-    request = Loading.followR(PayableTypes.save($scope.form))
+  if ($routeParams.id) {
+    Loading.followR(PayableTypes.get({id: $routeParams.id}))
+      .then((payableType) => {
+        if (payableType.parcel) {
+          $scope.form = payableType.parcel;
+        } else {
+          $location.path('/payable-types');
+        }
+      }).catch(ex => $location.path('/payable-types'));
   }
 
-  request.then(() => {
-    $location.path('/payable-types')
-});
+  $scope.search = (search) => {
+    $scope.tableParams.filter({id: search.query, name: search.query});
+  };
 
-};
+  $scope.save = () => {
+    var request = null;
+    if ($scope.form.id) {
+      request = Loading.followR(PayableTypes.update({id: $scope.form.id}, $scope.form))
+    } else {
+      request = Loading.followR(PayableTypes.save($scope.form))
+    }
 
-$scope.remove = (item) => {
-  Modals
-    .confirm("Você deseja realmente remover esse tipo de pagamento?")
-    .then(function () {
-      Loading.followR(PayableTypes.delete({id: item.id})).then(() => {
-        $scope.tableParams.reload();
+    request.then(() => {
+      $location.path('/payable-types')
     });
-});
-};
 
-$scope.getEditUrl = (payableType) => {
-  return `#/payable-types/edit/${payableType.id}`;
-}
+  };
+
+  $scope.remove = (item) => {
+    Modals
+      .confirm("Você deseja realmente remover esse tipo de pagamento?")
+      .then(function () {
+        Loading.followR(PayableTypes.delete({id: item.id})).then(() => {
+          $scope.tableParams.reload();
+        });
+      });
+  };
+
+  $scope.getEditUrl = (payableType) => {
+    return `#/payable-types/edit/${payableType.id}`;
+  }
 
 
 };

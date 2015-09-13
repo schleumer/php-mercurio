@@ -2,7 +2,7 @@
 
 namespace App\Local;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 class ApiParcel extends JsonResponse implements \JsonSerializable
 {

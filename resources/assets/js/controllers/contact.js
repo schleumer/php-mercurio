@@ -3,4 +3,5 @@
  * @module controller
  * @type {*[]}
  */
-module.exports = /*@ngInject*/ function ContactController($scope) { };
+module.exports = /*@ngInject*/ function ContactController($scope) {
+};

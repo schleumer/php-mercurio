@@ -35,9 +35,11 @@ class ReceivablesController extends Controller
 
         $receivable = Receivable::create($data);
 
-        $customer = Customer::find($data['customer']['id']);
+        $customer = Customer::throughCompany()->find($data['customer']['id']);
 
-        $receivable->customer()->associate($customer);
+        if ($customer) {
+            $receivable->customer()->associate($customer);
+        }
 
         $receivable->save();
 
@@ -58,7 +60,13 @@ class ReceivablesController extends Controller
 
     public function show(Request $request, $id)
     {
-        return (new ApiParcel(Receivable::with(['customer'])->find($id)));
+        $receivable = Receivable::throughCompany()->with('customer')->find($id);
+
+        if (!$receivable) {
+            abort(404);
+        }
+
+        return (new ApiParcel($receivable));
     }
 
     public function update(Request $request, $id)
@@ -96,13 +104,15 @@ class ReceivablesController extends Controller
             ['receivables.id', 'customers.name', 'receivables.created_at']);
     }
 
-    public function getPrint(Request $request, $id) {
+    public function getPrint(Request $request, $id)
+    {
         return view('jobOrders/print', ['jobOrder' =>
             JobOrder::with(['jobs', 'customer'])->find($id)
         ]);
     }
 
-    public function postSetStatus(Request $request, $id) {
+    public function postSetStatus(Request $request, $id)
+    {
         /** @var Receivable $receivable */
         $receivable = Receivable::find($id);
         $receivable->status = $request->input('status') ?: Receivable::STATUS_PENDING;

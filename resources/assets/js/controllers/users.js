@@ -42,7 +42,7 @@ module.exports = /*@ngInject*/ function UsersController($scope, $rootScope, $q, 
         } else {
           $location.path('/users');
         }
-      });
+      }).catch(ex => $location.path('/users'));
   }
 
   $scope.search = (search) => {

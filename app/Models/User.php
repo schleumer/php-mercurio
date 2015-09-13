@@ -44,4 +44,19 @@ class User extends CompanyModel implements AuthenticatableContract, CanResetPass
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function retrieveById($identifier) {
+        echo "LAMO";
+        return $this->createModel()->newQuery()->with('company')->find($identifier);
+    }
+
+    public function retrieveByToken($identifier, $token) {
+        echo "LAMO";
+        // your code with join added here
+    }
+
+    public function retrieveByCredentials(array $credentials) {
+        echo "LAMO";
+        // your code with join added here
+    }
 }

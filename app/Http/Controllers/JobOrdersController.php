@@ -33,9 +33,11 @@ class JobOrdersController extends Controller
         $data['customer_id'] = $data['customer']['id'];
         $jobOrder = JobOrder::create($data);
 
-        $customer = Customer::find($data['customer']['id']);
+        $customer = Customer::throughCompany()->find($data['customer']['id']);
 
-        $jobOrder->customer()->associate($customer);
+        if ($customer) {
+            $jobOrder->customer()->associate($customer);
+        }
 
         $jobOrder->save();
 
@@ -56,9 +58,10 @@ class JobOrdersController extends Controller
 
     public function show(Request $request, $id)
     {
-        return (new ApiParcel(JobOrder::with(['customer', 'jobs' => function ($query) {
-            $query->select('job_order_jobs.*', 'jobs.name', 'jobs.id');
-        }])->find($id)));
+        return (new ApiParcel(JobOrder::throughCompany()
+            ->with(['customer', 'jobs' => function ($query) {
+                $query->select('job_order_jobs.*', 'jobs.name', 'jobs.id');
+            }])->find($id)));
     }
 
     public function update(Request $request, $id)
@@ -67,12 +70,19 @@ class JobOrdersController extends Controller
         $data = $request->all();
 
         /* @var JobOrder $jobOrder */
-        $jobOrder = JobOrder::find($id);
+        $jobOrder = JobOrder::throughCompany()->find($id);
+
+        if (!$jobOrder) {
+            abort(404);
+        }
+
         $jobOrder->update($data);
 
-        $customer = Customer::find($data['customer']['id']);
+        $customer = Customer::throughCompany()->find($data['customer']['id']);
 
-        $jobOrder->customer()->associate($customer);
+        if ($customer) {
+            $jobOrder->customer()->associate($customer);
+        }
 
         $jobs = array_map(function ($item) {
             return [
@@ -91,7 +101,14 @@ class JobOrdersController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        JobOrder::find($id)->delete();
+        $jobOrder = JobOrder::throughCompany()->find($id);
+
+        if (!$jobOrder) {
+            abort(404);
+        }
+
+        $jobOrder->delete();
+
         return (new ApiParcel())->addMessage('general', 'Ordem de Serviço removido com sucesso!');
     }
 
@@ -109,16 +126,30 @@ class JobOrdersController extends Controller
             ['job_orders.id', 'customers.name', 'job_orders.created_at']);
     }
 
-    public function getPrint(Request $request, $id) {
+    public function getPrint(Request $request, $id)
+    {
+        $jobOrder = JobOrder::throughCompany()->with(['jobs', 'customer'])->find($id);
+
+        if (!$jobOrder) {
+            abort(404);
+        }
+
         return view('jobOrders/print', ['jobOrder' =>
-            JobOrder::with(['jobs', 'customer'])->find($id)
+            $jobOrder
         ]);
     }
 
-    public function postSetStatus(Request $request, $id) {
+    public function postSetStatus(Request $request, $id)
+    {
         /** @var JobOrder $jobOrder */
-        $jobOrder = JobOrder::find($id);
+        $jobOrder = JobOrder::throughCompany()->find($id);
+
+        if (!$jobOrder) {
+            abort(404);
+        }
+
         $jobOrder->status = $request->input('status') ?: JobOrder::STATUS_PENDING;
+
         $jobOrder->save();
 
         return $jobOrder;

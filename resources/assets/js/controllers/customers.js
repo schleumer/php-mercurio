@@ -41,7 +41,7 @@ module.exports = /*@ngInject*/ function CustomersController($scope, $rootScope, 
         } else {
           $location.path('/customers');
         }
-      });
+      }).catch(ex => $location.path('/customers'));
   }
 
   $scope.search = (search) => {
