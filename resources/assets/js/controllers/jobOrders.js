@@ -94,6 +94,7 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
   };
 
   $scope.getStatusClass = (status) => {
+    status = status || 2;
     switch (status.toString()) {
       case "1":
         return "btn-success";
@@ -109,6 +110,7 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
 
 
   $scope.getStatusName = (status) => {
+    status = status || 2;
     switch (status.toString()) {
       case "1":
         return "Ok";

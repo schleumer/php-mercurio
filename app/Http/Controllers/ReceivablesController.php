@@ -98,7 +98,7 @@ class ReceivablesController extends Controller
         return Receivable::throughCompany()->ngTable($request, function ($query, $params) {
             return $query
                 ->leftJoin('customers', 'customers.id', '=', 'receivables.customer_id')
-                ->orderBy('receivables.status', 'asc')
+                ->orderBy('receivables.status', 'desc')
                 ->select('receivables.*', 'customers.name as customer_name');
         }, ['receivables.id', 'customers.name'],
             ['receivables.id', 'customers.name', 'receivables.created_at']);

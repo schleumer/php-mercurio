@@ -120,7 +120,7 @@ class JobOrdersController extends Controller
                 ->leftJoin('job_order_jobs', 'job_order_jobs.job_order_id', '=', 'job_orders.id', 'outer')
                 ->leftJoin('jobs', 'job_order_jobs.job_id', '=', 'jobs.id')
                 ->groupBy('job_orders.id')
-                ->orderBy('job_orders.status', 'asc')
+                ->orderBy('job_orders.status', 'desc')
                 ->select('job_orders.*', 'customers.name as customer_name', 'jobs.name as job_name');
         }, ['job_orders.id', 'customers.name'],
             ['job_orders.id', 'customers.name', 'job_orders.created_at']);

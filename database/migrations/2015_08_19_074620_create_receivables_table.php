@@ -36,7 +36,8 @@ class CreateReceivablesTable extends Migration
             $table->integer('receivable_id')->unsigned();
             $table->decimal('price', 20, 2);
             $table->tinyInteger('status')
-                ->nullable();
+                ->nullable()
+                ->default(2);;
 
             $table->timestamps();
             $table->softDeletes();

@@ -35,7 +35,8 @@ class CreatePayablesTable extends Migration
             $table->dateTime('date')
                 ->nullable();
             $table->tinyInteger('status')
-                ->nullable();
+                ->nullable()
+                ->default(2);;
             $table->decimal('price', 20, 2);
             $table->text('description')
                 ->nullable();

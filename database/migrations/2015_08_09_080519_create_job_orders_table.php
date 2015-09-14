@@ -13,7 +13,8 @@ class CreateJobOrdersTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->text('note')->nullable();
             $table->tinyInteger('status')
-                ->nullable();
+                ->nullable()
+                ->default(2);
 
             $table->integer('company_id')
                 ->unsigned()
