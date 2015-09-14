@@ -94,11 +94,11 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
   };
 
   $scope.getStatusClass = (status) => {
-    switch (status) {
-      case 1:
+    switch (status.toString()) {
+      case "1":
         return "btn-success";
         break;
-      case 2:
+      case "2":
         return "btn-warning";
         break;
       default:
@@ -109,11 +109,11 @@ module.exports = /*@ngInject*/ function JobOrdersController($scope, $rootScope, 
 
 
   $scope.getStatusName = (status) => {
-    switch (status) {
-      case 1:
+    switch (status.toString()) {
+      case "1":
         return "Ok";
         break;
-      case 2:
+      case "2":
         return "Pendente";
         break;
       default:
